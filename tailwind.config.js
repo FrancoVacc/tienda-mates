@@ -15,6 +15,12 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        colors: {
+            'corduraGreen': '#5A5A3A',
+            'corduraLightGreen': '#9C9C6B',
+            'white': '#ffffff',
+            'black': '#1F1F1F'
+        }
     },
 
     plugins: [forms],
