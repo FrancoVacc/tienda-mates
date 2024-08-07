@@ -4,3 +4,8 @@
 
 -   Diseño de vistas
 -   Vistas layout, footer, header
+
+### Día
+
+-   Vistas terminadas (home, nosotros, layout, etc.)
+-   faltan vistas
