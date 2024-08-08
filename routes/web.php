@@ -1,17 +1,14 @@
 <?php
 
+use App\Http\Controllers\clientController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('web.home');
-})->name('home');
-Route::get('/nosotros', function () {
-    return view('web.about');
-})->name('about');
-Route::get('/contacto', function () {
-    return view('web.contact');
-})->name('contact');
+Route::get('/', [clientController::class, 'index'])->name('home');
+Route::get('/nosotros', [clientController::class, 'about'])->name('about');
+Route::get('/contacto', [clientController::class, 'contact'])->name('contact');
+Route::get('/tienda', [clientController::class, 'shop'])->name('shop');
+Route::get('/cart', [clientController::class, 'cart'])->name('cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
