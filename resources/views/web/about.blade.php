@@ -1,5 +1,5 @@
 <x-layout.layout-web>
-    <div class=" p-2">
+    <div class=" pt-2  py-2 md:py-6 md:w-[60%] md:mx-auto">
         <h2 class="text-black font-bold text-center text-xl">¿Quienes Somos?</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto porro quam voluptas vero nulla quibusdam
             voluptates, eos voluptatem ab provident amet exercitationem facilis quos esse dignissimos! Alias illum culpa

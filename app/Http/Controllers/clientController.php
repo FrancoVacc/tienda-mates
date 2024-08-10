@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class clientController extends Controller
@@ -20,7 +21,8 @@ class clientController extends Controller
     }
     public function shop()
     {
-        return view('web.shop');
+        $productos = Product::all();
+        return view('web.shop', compact('productos'));
     }
     public function cart()
     {

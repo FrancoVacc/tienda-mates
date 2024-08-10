@@ -1,5 +1,5 @@
 <x-layout.layout-web>
-    <div class="md:flex md:justify-center mt-5">
+    <div class="md:flex md:justify-center md:w-[60%] md:mx-auto mt-5">
         <div class="p-1">
             <x-category-card title="Mates"
                 imgUrl="https://media.istockphoto.com/id/1286062710/es/foto/t%C3%A9-tradicional-argentino-yerba-mate-en-una-calabaza-calabaza-con-palo-de-bombilla-contra-fondo.jpg?s=1024x1024&w=is&k=20&c=Ju29HLGf-NSYTKUXHj2gOJVLQheR3ptX2NF9K3xwf7o="></x-category-card>

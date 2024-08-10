@@ -19,7 +19,15 @@ export default {
             'corduraGreen': '#5A5A3A',
             'corduraLightGreen': '#9C9C6B',
             'white': '#ffffff',
-            'black': '#1F1F1F'
+            'black': '#1F1F1F',
+            'blue': '#1A56DB',
+            'lightBlue': '#3F83F8',
+            'red': '#C81E1E ',
+            'lightRed': '#F05252',
+            'yellow': '#E3A008',
+            'lightYellow': '#FCE96A',
+            'purple': '#6C2BD9',
+            'lightPurple': '#9061F9'
         }
     },
 

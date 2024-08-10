@@ -1,6 +1,6 @@
 @props(['imgUrl', 'title'])
 
-<div class="rounded-xl hover:shadow-xl overflow-hidden md:max-w-[50%]">
+<div class="rounded-xl hover:shadow-xl overflow-hidden ">
     <a href="#">
         <img src="{{ $imgUrl }}" alt="mate">
         <div class=" text-center text-white font-bold bg-corduraLightGreen hover:bg-corduraGreen">

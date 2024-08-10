@@ -15,3 +15,10 @@
 -   Vista contacto terminada
 -   falta hacer las vistas de tienda y carrito de compras
 -   falta diseñar la db
+
+## Día 4
+
+-   Migraciones y modelo de productos, categrias y producto categoria
+-   Dashboard Productos
+-   controlador producto
+-   carga de nuevo producto.
