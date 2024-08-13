@@ -9,6 +9,7 @@ Route::get('/', [clientController::class, 'index'])->name('home');
 Route::get('/nosotros', [clientController::class, 'about'])->name('about');
 Route::get('/contacto', [clientController::class, 'contact'])->name('contact');
 Route::get('/tienda', [clientController::class, 'shop'])->name('shop');
+Route::get('/producto/{id}', [clientController::class, 'product'])->name('producto');
 Route::get('/cart', [clientController::class, 'cart'])->name('cart');
 
 Route::get('/dashboard', function () {

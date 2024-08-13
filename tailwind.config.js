@@ -27,7 +27,8 @@ export default {
             'yellow': '#E3A008',
             'lightYellow': '#FCE96A',
             'purple': '#6C2BD9',
-            'lightPurple': '#9061F9'
+            'lightPurple': '#9061F9',
+            'gray': '#6b7280'
         }
     },
 

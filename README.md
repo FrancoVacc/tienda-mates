@@ -22,3 +22,9 @@
 -   Dashboard Productos
 -   controlador producto
 -   carga de nuevo producto.
+
+## Día 5
+
+-   finalizada la carda de productos en el panel de usuarios
+-   muestra de productos en el area de clientes
+-   terminar los productos en el lado clientes

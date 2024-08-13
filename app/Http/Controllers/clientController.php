@@ -24,6 +24,12 @@ class clientController extends Controller
         $productos = Product::all();
         return view('web.shop', compact('productos'));
     }
+    public function product(string $id)
+    {
+        $product = Product::FindOrFail($id);
+        return view('web.product', compact('product'));
+    }
+
     public function cart()
     {
         return view('web.cart');
