@@ -1,9 +1,9 @@
 <x-layout.layout-web>
-    <div class=" wy-[60%] mx-auto mt-4 flex flex-wrap p-10">
+    <div class=" md:w-[80%] mx-auto mt-4 flex flex-wrap md:grid md:grid-cols-4 p-10 md:px-0">
         @if (count($productos))
             @foreach ($productos as $product)
                 <a href="{{ route('producto', $product->id) }}">
-                    <div class=" m-2 hover:shadow-md hover:shadow-gray max-w-40 rounded-md overflow-hidden">
+                    <div class=" md:col-span-1 md:max-w-72 m-2 hover:shadow-md hover:shadow-gray  overflow-hidden">
                         <img class=" mx-auto" src="{{ asset('img/products/' . $product->img) }}"
                             alt="{{ $product->title }}">
                         <div class=" bg-corduraLightGreen">

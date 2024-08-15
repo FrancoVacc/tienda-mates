@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('dashboard.products_create');
+        $category = Categorie::all();
+        return view('dashboard.products_create', compact('category'));
     }
 
     /**
@@ -33,6 +35,7 @@ class ProductController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|max:255|string',
             'price' => 'required|numeric',
+            'categorie' => 'required',
             'description' => 'required',
             'img' => 'file|image'
         ]);
@@ -48,6 +51,7 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->slug = $request->slug;
         $product->price = $request->price;
+        $product->id_categorie = $request->categorie;
         $product->description = $request->description;
         $product->img = $request->hasFile('img') ? $request->slug : null;
         $product->save();
@@ -81,6 +85,7 @@ class ProductController extends Controller
             'title' => 'required|max:255',
             'slug' => 'required|max:255|string',
             'price' => 'required|numeric',
+            'categorie' => 'required',
             'description' => 'required',
             'img' => 'file|image'
         ]);
@@ -100,6 +105,7 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->slug = $request->slug;
         $product->price = $request->price;
+        $product->id_categorie = $request->categorie;
         $product->description = $request->description;
         $product->img = $request->hasFile('img') ? $request->slug : null;
         $product->save();

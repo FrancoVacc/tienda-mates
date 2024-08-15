@@ -76,10 +76,10 @@
         if (window.scrollY > 0) {
             // header.classList.add('fixed', 'top-0', 'w-full');
             mdNav.classList.remove('h-[150px]');
-            mdNav.classList.add('h-[50px]');
+            mdNav.classList.add('h-[70px]');
         } else {
             // header.classList.remove('fixed', 'top-0', 'w-full');
-            mdNav.classList.remove('h-[50px]');
+            mdNav.classList.remove('h-[70px]');
             mdNav.classList.add('h-[150px]');
         }
     })

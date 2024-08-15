@@ -28,3 +28,9 @@
 -   finalizada la carda de productos en el panel de usuarios
 -   muestra de productos en el area de clientes
 -   terminar los productos en el lado clientes
+
+## Día 6
+
+-   Mejoras visuales
+-   Controlador de Categorías terminado (CRUD)
+-   Falta implementar filtros por categorias en Dashboard y Cliente

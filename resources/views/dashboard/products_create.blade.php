@@ -29,6 +29,16 @@
                 <input type="number" name="price" value="{{ old('price') }}"
                     class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
             </div>
+            <div class="flex flex-col justify-start md:mr-1">
+                <label for="categorie" class=" font-semibold text-sm text-black py-2">Categoría</label>
+                <select name="categorie" value="{{ old('price') }}"
+                    class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
+                    <option>-- Seleccione una opción --</option>
+                    @foreach ($category as $item)
+                        <option value="{{ $item->id }}">{{ $item->categorie }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="flex flex-col justify-start">
                 <label for="description" class=" font-semibold text-sm text-black py-2">Descripción del producto</label>
                 <textarea name="description" id="" cols="20" rows="5" style="resize:none"
