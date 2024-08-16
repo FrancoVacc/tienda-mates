@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,15 @@ class clientController extends Controller
     }
     public function shop()
     {
-        $productos = Product::all();
-        return view('web.shop', compact('productos'));
+        $categories = Categorie::all();
+        $productos = Product::paginate(10);
+        return view('web.shop', compact('productos', 'categories'));
+    }
+    public function category(string $id)
+    {
+        $categories = Categorie::all();
+        $productos = Product::paginate(10)->where('id_categorie', '=', $id);
+        return view('web.shop_category', compact('productos', 'categories'));
     }
     public function product(string $id)
     {

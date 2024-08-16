@@ -10,6 +10,7 @@ Route::get('/', [clientController::class, 'index'])->name('home');
 Route::get('/nosotros', [clientController::class, 'about'])->name('about');
 Route::get('/contacto', [clientController::class, 'contact'])->name('contact');
 Route::get('/tienda', [clientController::class, 'shop'])->name('shop');
+Route::get('/categoria/{id}', [clientController::class, 'category'])->name('category');
 Route::get('/producto/{id}', [clientController::class, 'product'])->name('producto');
 Route::get('/cart', [clientController::class, 'cart'])->name('cart');
 
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
 
     //products
     Route::resource('products', ProductController::class);
+    //Route::get('/products', [ProductController::class, 'categorie'])->name('products.categorie');
 
     //categories
     Route::resource('categories', CategorieController::class);

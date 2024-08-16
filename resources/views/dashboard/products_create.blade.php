@@ -16,12 +16,12 @@
             @csrf
             <div class="flex flex-col justify-start md:mr-1">
                 <label for="title" class=" font-semibold text-sm text-black py-2">Titulo</label>
-                <input type="text" name="title" value="{{ old('title') }}"
+                <input type="text" name="title" value="{{ old('title') }}" id="title"
                     class="text-sm h-9  text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
             </div>
             <div class="flex flex-col justify-start md:mr-1">
                 <label for="slug" class=" font-semibold text-sm text-black py-2">Slug</label>
-                <input type="text" name="slug" value="{{ old('slug') }}"
+                <input type="text" name="slug" value="{{ old('slug') }}" id="slug"
                     class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
             </div>
             <div class="flex flex-col justify-start md:mr-1">
@@ -58,3 +58,13 @@
     </div>
 
 </x-app-layout>
+<script>
+    const title = document.getElementById('title')
+    const slug = document.getElementById('slug')
+
+    title.addEventListener('blur', (e) => {
+
+        const slugValue = title.value.toLowerCase();
+        slug.value = slugValue.replaceAll(' ', '_');
+    })
+</script>

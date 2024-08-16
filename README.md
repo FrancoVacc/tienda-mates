@@ -34,3 +34,7 @@
 -   Mejoras visuales
 -   Controlador de Categorías terminado (CRUD)
 -   Falta implementar filtros por categorias en Dashboard y Cliente
+
+## Día 7
+
+-   implementación de filtros con categorias en cliente y productos del dashboard

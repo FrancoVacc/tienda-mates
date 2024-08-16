@@ -8,6 +8,17 @@
     <div class="flex mx-10 my-2">
         <a href="{{ route('products.create') }}"
             class="text-white bg-blue hover:bg-lightBlue focus:ring-4 focus:ring-blue font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2  focus:outline-none">Nuevo</a>
+        <form action="{{ route('products.index') }}" method="get" id="categories">
+
+            <label for="categories">Categorias</label>
+            <select name="categorie" id="select-categories">
+                <option>-- Seleccione una Categoría --</option>
+                <option value="0"> Mostrat Todo </option>
+                @foreach ($categories as $categorie)
+                    <option value="{{ $categorie->id }}">{{ $categorie->categorie }}</option>
+                @endforeach
+            </select>
+        </form>
     </div>
     <div>
         @if (count($products))
@@ -84,3 +95,11 @@
         @endif
     </div>
 </x-app-layout>
+<script>
+    const form = document.getElementById('categories');
+    const select = document.getElementById('select-categories');
+
+    select.addEventListener("change", () => {
+        form.submit();
+    })
+</script>

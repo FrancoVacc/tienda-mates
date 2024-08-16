@@ -8,18 +8,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('dashboard.products', compact('products'));
+        if (!empty($request->query()) && $request->query('categorie') != 0) {
+
+            $categorie = Categorie::findOrFail($request->query('categorie'));
+            $products = Product::paginate(10)->where('id_categorie', '=', $categorie->id);
+        } else {
+            $products = Product::paginate(10);
+        }
+        $categories = Categorie::all();
+
+        return view('dashboard.products', compact('products', 'categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+
     public function create()
     {
         $category = Categorie::all();
