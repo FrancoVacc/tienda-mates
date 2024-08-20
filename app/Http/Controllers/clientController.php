@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categorie;
+use App\Models\Message;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -20,6 +21,47 @@ class clientController extends Controller
     {
         return view('web.contact');
     }
+    public function messages(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'lastname' => 'required|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|max:255',
+            'message' => 'required'
+        ]);
+
+        $message = new Message();
+        $message->name = $request->name;
+        $message->lastname = $request->lastname;
+        $message->email = $request->email;
+        $message->phone = $request->phone;
+        $message->message = $request->message;
+        $message->readed = false;
+        $message->save();
+
+        return redirect('contacto');
+    }
+
+    public function message_show()
+    {
+        $new_messages = Message::all()->where('readed', '=', false);
+        $old_messages = Message::all()->where('readed', '=', true);
+        return view('dashboard.messages', compact('new_messages', 'old_messages'));
+    }
+
+    public function read_message(string $id)
+    {
+        $message = Message::findOrFail($id);
+
+        if ($message->readed == false) {
+            $message->readed = true;
+            $message->save();
+        }
+
+        return view('dashboard.message', compact('message'));
+    }
+
     public function shop()
     {
         $categories = Categorie::all();

@@ -38,3 +38,10 @@
 ## Día 7
 
 -   implementación de filtros con categorias en cliente y productos del dashboard
+
+## Día 8
+
+-   Mensajería
+-   controlador de mensajería
+-   gestion de mensajes en dashboard
+-   envio de emails y whatsapp

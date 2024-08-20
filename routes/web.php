@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [clientController::class, 'index'])->name('home');
 Route::get('/nosotros', [clientController::class, 'about'])->name('about');
 Route::get('/contacto', [clientController::class, 'contact'])->name('contact');
+Route::post('/contacto', [clientController::class, 'messages'])->name('messages');
 Route::get('/tienda', [clientController::class, 'shop'])->name('shop');
 Route::get('/categoria/{id}', [clientController::class, 'category'])->name('category');
 Route::get('/producto/{id}', [clientController::class, 'product'])->name('producto');
@@ -25,10 +26,13 @@ Route::middleware('auth')->group(function () {
 
     //products
     Route::resource('products', ProductController::class);
-    //Route::get('/products', [ProductController::class, 'categorie'])->name('products.categorie');
 
     //categories
     Route::resource('categories', CategorieController::class);
+
+    //message
+    Route::get('/message', [clientController::class, 'message_show'])->name('messages_show');
+    Route::get('/message/{id}', [clientController::class, 'read_message'])->name('messages_read');
 });
 
 require __DIR__ . '/auth.php';
