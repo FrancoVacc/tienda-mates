@@ -45,3 +45,8 @@
 -   controlador de mensajería
 -   gestion de mensajes en dashboard
 -   envio de emails y whatsapp
+
+## Día 9
+
+-   control de Disponibilidad sobre el Stok
+-   Vistas con stok

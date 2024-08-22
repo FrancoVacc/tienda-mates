@@ -11,7 +11,8 @@ class clientController extends Controller
 {
     public function index()
     {
-        return view('web.home');
+        $categories = Categorie::all();
+        return view('web.home', compact('categories'));
     }
     public function about()
     {

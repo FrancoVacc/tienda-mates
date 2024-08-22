@@ -18,7 +18,11 @@
                                 alt="{{ $product->title }}">
                             <div class=" bg-corduraLightGreen">
                                 <h2 class="font-bold text-xl p-2">{{ $product->title }}</h2>
-                                <p class="font-semibold text-md p-2">${{ $product->price }}</p>
+                                <p class="font-semibold text-md p-2">${{ $product->price }} @if (!$product->available)
+                                        <span class=" text-lightRed "> - Sin Stock
+                                            -</span>
+                                    @endif
+                                </p>
                             </div>
                         </div>
                     </a>

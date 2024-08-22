@@ -53,9 +53,15 @@ class ProductController extends Controller
             $file->move($filePath, $fileName);
         }
 
+
         $product->title = $request->title;
         $product->slug = $request->slug;
         $product->price = $request->price;
+        if (isset($request->available)) {
+            $product->available = true;
+        } else {
+            $product->available = false;
+        }
         $product->id_categorie = $request->categorie;
         $product->description = $request->description;
         $product->img = $request->hasFile('img') ? $request->slug : null;
@@ -77,8 +83,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $category = Categorie::all();
         $product = Product::findOrFail($id);
-        return view('dashboard.products_edit', compact('product'));
+        return view('dashboard.products_edit', compact('product', 'category'));
     }
 
     /**
@@ -110,9 +117,14 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->slug = $request->slug;
         $product->price = $request->price;
+        if (isset($request->available)) {
+            $product->available = true;
+        } else {
+            $product->available = false;
+        }
         $product->id_categorie = $request->categorie;
         $product->description = $request->description;
-        $product->img = $request->hasFile('img') ? $request->slug : null;
+        $product->img = $request->slug;
         $product->save();
 
         return redirect('products');

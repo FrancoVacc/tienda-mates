@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('slug', 255)->unique();
             $table->decimal('price');
             $table->string('description');
+            $table->boolean('available');
             $table->string('img');
             $table->unsignedBigInteger('id_categorie');
             $table->foreign('id_categorie')->references('id')->on('categories')->onDelete('cascade');
