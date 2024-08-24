@@ -1,5 +1,5 @@
 <x-layout.layout-web>
-    <div>
-        hola
-    </div>
+    <main>
+        <div id="container"></div>
+    </main>
 </x-layout.layout-web>

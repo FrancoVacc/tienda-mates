@@ -3,19 +3,21 @@
         <div class=" md:w-[50%] md:mr-4">
             <img src="{{ asset('img/products/' . $product->img) }}" alt="{{ $product->title }}">
         </div>
-        <div class=" w-[50%]">
+        <div class=" md:w-[50%]">
             <h1 class=" font-bold text-4xl mb-2">{{ $product->title }}</h1>
 
             <p class="text-xl font-bold my-4">${{ $product->price }}</p>
             @if ($product->available)
-                <form action="" class="flex flex-col md:flex-row border-y border-y-gray pb-4">
+                <form action="" method="POST" class="flex flex-col md:flex-row border-y border-y-gray pb-4">
+                    @csrf
+                    <input type="hidden" id="title" name="id" value="{{ $product->id }}">
                     <div class="flex flex-col md:mr-2 my-2 ">
                         <label for="cantidad">Cantidad</label>
-                        <input type="number" name="" id="" min="1" value="1"
+                        <input type="number" id="cuantity" min="1" placeholder="Ej: 1" name="cuantity"
                             class=" w-20 rounded-md">
                     </div>
 
-                    <button
+                    <button onClick="fillCart()"
                         class=" mt-2 h-16 bg-corduraGreen hover:bg-corduraLightGreen px-2 py-4 text-white rounded-md">Agregar
                         al
                         carrito</button>

@@ -50,3 +50,9 @@
 
 -   control de Disponibilidad sobre el Stok
 -   Vistas con stok
+
+## Día 10
+
+-   Login para clientes
+-   permitir ver el carrito si está logueado
+-   arreglos visuales en las plantillas

@@ -17,9 +17,24 @@
                             class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Nosotros</a></li>
                     <li><a href="{{ route('contact') }}"
                             class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Contacto</a></li>
-                    <li><a href="{{ route('cart') }}"
-                            class="text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
-                            <i class="fa-solid fa-cart-shopping"></i></a></li>
+
+
+
+                    @if (Route::has('login'))
+                        @auth
+                            <li><a href="{{ route('cart') }}"
+                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                    <i class="fa-solid fa-cart-shopping"></i></a></li>
+                            <li><a href="{{ route('dashboard') }}"
+                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                    <i class="fa-solid fa-user"></i></a></li>
+                        @else
+                            <li><a href="{{ route('login') }}"
+                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                    Iniciar Sesión
+                                </a></li>
+                        @endauth
+                    @endif
                 </ul>
             </nav>
         </div>
@@ -35,11 +50,23 @@
             <button id="menu-btn" class=" md:hidden mr-6 text-corduraLightGreen hover:text-corduraGreen text-2xl"><i
                     class="fa-solid fa-bars"></i></button>
 
-
-            <a href="{{ route('cart') }}"
-                class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
-                <i class="fa-solid fa-cart-shopping"></i>
-            </a>
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ route('cart') }}"
+                        class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </a>
+                    <a href="{{ route('dashboard') }}"
+                        class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                    </a>
+                @endauth
+            @endif
         </div>
 
 
