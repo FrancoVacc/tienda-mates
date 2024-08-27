@@ -56,3 +56,16 @@
 -   Login para clientes
 -   permitir ver el carrito si está logueado
 -   arreglos visuales en las plantillas
+
+### Día 11
+
+-   agregamos el paquete Spattie Permission
+-   Realizamos seeders para asignar roles y permisos
+-   declaramos el rol admin y se lo agregarmos al usuario 1
+-   Declaramos el rol cliente y se lo agregamos a todos los demás usuarios
+-   activamos los middlewares
+-   pusimos rutas protegidas con middlewares
+-   creacion del modelo user_information
+-   creacion del registro en blanco sobre el modelo user_informaton
+-   colocacion de formulario para modificar todo en edit.blade.php junto con los datos de la cuenta personal.
+-   falta cargar todo una vez que se termine de actualizar

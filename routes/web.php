@@ -4,6 +4,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserInformationsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [clientController::class, 'index'])->name('home');
@@ -24,17 +25,20 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/userinformation/{user_information}', [UserInformationsController::class, 'update'])->name('userinformation.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //products
-    Route::resource('products', ProductController::class);
+    Route::group(['middleware' => ['role:admin']], function () {
+        //products
+        Route::resource('products', ProductController::class);
 
-    //categories
-    Route::resource('categories', CategorieController::class);
+        //categories
+        Route::resource('categories', CategorieController::class);
 
-    //message
-    Route::get('/message', [clientController::class, 'message_show'])->name('messages_show');
-    Route::get('/message/{id}', [clientController::class, 'read_message'])->name('messages_read');
+        //message
+        Route::get('/message', [clientController::class, 'message_show'])->name('messages_show');
+        Route::get('/message/{id}', [clientController::class, 'read_message'])->name('messages_read');
+    });
 });
 
 require __DIR__ . '/auth.php';

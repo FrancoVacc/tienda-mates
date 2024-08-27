@@ -25,9 +25,17 @@
                             <li><a href="{{ route('cart') }}"
                                     class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
                                     <i class="fa-solid fa-cart-shopping"></i></a></li>
-                            <li><a href="{{ route('dashboard') }}"
-                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                    <i class="fa-solid fa-user"></i></a></li>
+                            @role('admin')
+                                <li><a href="{{ route('dashboard') }}"
+                                        class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                        <i class="fa-solid fa-user"></i></a></li>
+                            @else
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen"><i
+                                            class="fa-solid fa-right-from-bracket"></i></button>
+                                </form>
+                            @endrole
                         @else
                             <li><a href="{{ route('login') }}"
                                     class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
@@ -56,10 +64,18 @@
                         class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </a>
-                    <a href="{{ route('dashboard') }}"
-                        class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
+                    @role('admin')
+                        <a href="{{ route('dashboard') }}"
+                            class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    @else
+                        <form method="POST" action="{{ route('logout') }}"
+                            class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
+                            @csrf
+                            <button><i class="fa-solid fa-right-from-bracket"></i></button>
+                        </form>
+                    @endrole
                 @else
                     <a href="{{ route('login') }}"
                         class="md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
