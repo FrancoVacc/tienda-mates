@@ -30,11 +30,9 @@
                                         class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
                                         <i class="fa-solid fa-user"></i></a></li>
                             @else
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen"><i
-                                            class="fa-solid fa-right-from-bracket"></i></button>
-                                </form>
+                                <li><a href="{{ route('profile.edit') }}"
+                                        class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                        <i class="fa-solid fa-user"></i></a></li>
                             @endrole
                         @else
                             <li><a href="{{ route('login') }}"

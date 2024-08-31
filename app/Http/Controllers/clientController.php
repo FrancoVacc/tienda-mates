@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Message;
 use App\Models\Product;
+use App\Models\user_information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class clientController extends Controller
 {
@@ -20,7 +22,15 @@ class clientController extends Controller
     }
     public function contact()
     {
-        return view('web.contact');
+        $user = Auth::user();
+        $user_info = user_information::findOrFail($user->id);
+
+        return view('web.contact', [
+            'name' => $user->name,
+            'email' => $user->email,
+            'lastname' => $user_info->lastname,
+            'phone' => $user_info->phone
+        ]);
     }
     public function messages(Request $request)
     {

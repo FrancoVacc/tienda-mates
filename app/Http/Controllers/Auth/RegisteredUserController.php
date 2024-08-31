@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\User;
 use App\Models\user_information;
 use Illuminate\Auth\Events\Registered;
@@ -43,6 +44,9 @@ class RegisteredUserController extends Controller
         ]);
 
         //Asignar rol cliente a todos los usuarios nuevos
+        if ($user->id == 1) {
+            $user->assignRole('admin');
+        }
         $user->assignRole('cliente');
 
         // agregar un user information nuevo
@@ -52,6 +56,17 @@ class RegisteredUserController extends Controller
             'lastname' => null,
             'dni' => null,
             'phone' => null
+        ]);
+
+        $address = Address::create([
+            'id_user' => $user->id,
+            'country' => null,
+            'province' => null,
+            'city' => null,
+            'street' => null,
+            'number' => null,
+            'postcode' => null,
+            'description' => null
         ]);
 
         event(new Registered($user));

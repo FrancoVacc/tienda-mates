@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\user_information;
 use Illuminate\Http\Request;
 
 class UserInformationsController extends Controller
@@ -51,7 +52,19 @@ class UserInformationsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request;
+        $request->validate([
+            'lastname' => 'required',
+            'phone' => 'required',
+            'dni' => 'required'
+        ]);
+
+        $information = user_information::findOrFail($id);
+        $information->lastname = $request->lastname;
+        $information->phone = $request->phone;
+        $information->dni = $request->dni;
+        $information->save();
+
+        return redirect('profile');
     }
 
     /**

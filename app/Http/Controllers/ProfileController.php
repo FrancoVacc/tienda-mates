@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Address;
 use App\Models\user_information;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,10 +19,12 @@ class ProfileController extends Controller
     public function edit(Request $request): View
     {
         $user_information = user_information::where('id_user', $request->user()->id)->first();
+        $address = Address::where('id_user', $request->user()->id)->first();
 
         return view('profile.edit', [
             'user' => $request->user(),
             'user_information' => $user_information,
+            'address' => $address,
         ]);
     }
 

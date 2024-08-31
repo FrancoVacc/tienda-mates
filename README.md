@@ -68,4 +68,8 @@
 -   creacion del modelo user_information
 -   creacion del registro en blanco sobre el modelo user_informaton
 -   colocacion de formulario para modificar todo en edit.blade.php junto con los datos de la cuenta personal.
--   falta cargar todo una vez que se termine de actualizar
+-   actualizacion de datos personales
+-   Creacion del modelo Address
+-   Creacion del registro en blanco de Address
+-   colocacion de formulario para modificar los datos de la direccion en edit.blade.php junto con los datos de la cuenta personal.
+-   actualizacion del formulario de contacto, con autocompletado de informacion del usuario
