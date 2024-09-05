@@ -57,7 +57,7 @@
 -   permitir ver el carrito si está logueado
 -   arreglos visuales en las plantillas
 
-### Día 11
+## Día 11
 
 -   agregamos el paquete Spattie Permission
 -   Realizamos seeders para asignar roles y permisos
@@ -73,3 +73,11 @@
 -   Creacion del registro en blanco de Address
 -   colocacion de formulario para modificar los datos de la direccion en edit.blade.php junto con los datos de la cuenta personal.
 -   actualizacion del formulario de contacto, con autocompletado de informacion del usuario
+
+## Día 12
+
+-   Creacion de los modelos de Cart y Cart_item
+-   Migraciones y creacion de la estructura de tablas correspondientes
+-   creacion del controlador CartController
+-   Carga de un carrito nuevo con sus respectivos item
+-   Mostrar el carrito y sus items
