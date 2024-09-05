@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class clientController extends Controller
 {
@@ -89,10 +90,5 @@ class clientController extends Controller
     {
         $product = Product::FindOrFail($id);
         return view('web.product', compact('product'));
-    }
-
-    public function cart()
-    {
-        return view('web.cart');
     }
 }

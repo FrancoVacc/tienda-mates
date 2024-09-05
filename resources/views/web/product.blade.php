@@ -8,16 +8,20 @@
 
             <p class="text-xl font-bold my-4">${{ $product->price }}</p>
             @if ($product->available)
-                <form action="" method="POST" class="flex flex-col md:flex-row border-y border-y-gray pb-4">
+                <form action="{{ route('addtocart') }}" method="POST"
+                    class="flex flex-col md:flex-row border-y border-y-gray pb-4">
                     @csrf
-                    <input type="hidden" id="title" name="id" value="{{ $product->id }}">
+                    <input type="hidden" name="id" value="{{ $product->id }}">
+                    <input type="hidden" name="title" value="{{ $product->title }}">
+                    <input type="hidden" name="price" value="{{ $product->price }}">
+                    <input type="hidden" name="img" value="{{ $product->img }}">
                     <div class="flex flex-col md:mr-2 my-2 ">
                         <label for="cantidad">Cantidad</label>
                         <input type="number" id="cuantity" min="1" placeholder="Ej: 1" name="cuantity"
                             class=" w-20 rounded-md">
                     </div>
 
-                    <button onClick="fillCart()"
+                    <button
                         class=" mt-2 h-16 bg-corduraGreen hover:bg-corduraLightGreen px-2 py-4 text-white rounded-md">Agregar
                         al
                         carrito</button>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\clientController;
 use App\Http\Controllers\ProductController;
@@ -17,7 +18,7 @@ Route::get('/categoria/{id}', [clientController::class, 'category'])->name('cate
 Route::get('/producto/{id}', [clientController::class, 'product'])->name('producto');
 
 
-Route::get('/cart', [clientController::class, 'cart'])->middleware(['auth', 'verified'])->name('cart');
+Route::get('/cart', [CartController::class, 'cartShow'])->middleware(['auth', 'verified'])->name('cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/userinformation/{user_information}', [UserInformationsController::class, 'update'])->name('userinformation.update');
     Route::put('/address/{address}', [AddressController::class, 'update'])->name('address.update');
     //Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    //cart
+    Route::post('/cart', [CartController::class, 'addToCart'])->name('addtocart');
 
     Route::group(['middleware' => ['role:admin']], function () {
         //products
