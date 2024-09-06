@@ -32,7 +32,7 @@ class CartController extends Controller
         ]);
 
 
-        return response()->json(['message' => 'Articulo añadido al carrito']);
+        return redirect('producto/' . $request->id);
     }
 
     public function cartShow()
@@ -50,5 +50,27 @@ class CartController extends Controller
         }
 
         return view('web.cart');
+    }
+
+    public function itemDelete($id)
+    {
+        Cart_item::destroy($id);
+        return redirect('/cart');
+    }
+    public function itemUpdate(Request $request, $id)
+    {
+        $item = Cart_item::findOrFail($id);
+
+        $request->validate([
+            'cuantity' => 'required|numeric'
+        ]);
+
+        $item->cuantity = $request->cuantity;
+        $item->save();
+        return redirect('/cart');
+    }
+    public function buyCart(string $id)
+    {
+        return $id;
     }
 }

@@ -81,3 +81,10 @@
 -   creacion del controlador CartController
 -   Carga de un carrito nuevo con sus respectivos item
 -   Mostrar el carrito y sus items
+
+## Día 13
+
+-   Se activaron las funciones de los botones de actualizar y eliminar elementos del carrito
+-   se mejoro el carrito en su parte visual
+-   se agregó el boton comprar.
+-   Revisar y diagramar la estructura de la base de datos para una compra

@@ -24,14 +24,18 @@ class clientController extends Controller
     public function contact()
     {
         $user = Auth::user();
-        $user_info = user_information::findOrFail($user->id);
 
-        return view('web.contact', [
-            'name' => $user->name,
-            'email' => $user->email,
-            'lastname' => $user_info->lastname,
-            'phone' => $user_info->phone
-        ]);
+        if (isset($user)) {
+            $user_info = user_information::findOrFail($user->id);
+
+            return view('web.contact', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'lastname' => $user_info->lastname,
+                'phone' => $user_info->phone
+            ]);
+        }
+        return view('web.contact');
     }
     public function messages(Request $request)
     {

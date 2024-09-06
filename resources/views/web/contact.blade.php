@@ -18,30 +18,30 @@
                 <div class=" md:flex md:justify-between">
                     <div class="flex flex-col justify-start md:mr-1">
                         <label for="name" class=" font-semibold text-sm text-corduraLightGreen py-2">Nombre</label>
-                        <input type="text" name="name" value="{{ old('name', $name) }}"
+                        <input type="text" name="name" value="{{ isset($name) ? $name : null }}"
                             class="text-sm h-9 rounded-md text-black font-light px-3 py-2 border-0 border-b-2 border-b-corduraGreen focus:outline-none focus:border-b-corduraLightGreen focus:ring-0">
                     </div>
                     <div class="flex flex-col justify-start">
                         <label for="lastname"
                             class=" font-semibold text-sm text-corduraLightGreen py-2">Apellido</label>
-                        <input type="text" name="lastname" value="{{ old('lastname', $lastname) }}"
+                        <input type="text" name="lastname" value="{{ isset($lastname) ? $lastname : null }}"
                             class="text-sm h-9 rounded-md text-black font-light px-3 py-2 border-0 border-b-2 border-b-corduraGreen focus:outline-none focus:border-b-corduraLightGreen focus:ring-0">
                     </div>
                 </div>
                 <div class="flex flex-col justify-start">
                     <label for="email" class=" font-semibold text-sm text-corduraLightGreen py-2">Correo</label>
-                    <input type="text" name="email" value="{{ old('email', $email) }}"
+                    <input type="text" name="email" value="{{ isset($email) ? $email : null }}"
                         class="text-sm h-9 rounded-md text-black font-light px-3 py-2 border-0 border-b-2 border-b-corduraGreen focus:outline-none focus:border-b-corduraLightGreen focus:ring-0">
                 </div>
                 <div class="flex flex-col justify-start">
                     <label for="phone" class=" font-semibold text-sm text-corduraLightGreen py-2">Teléfono</label>
-                    <input type="text" name="phone" value="{{ old('phone', $phone) }}"
+                    <input type="text" name="phone" value="{{ isset($phone) ? $phone : null }}"
                         class="text-sm h-9 rounded-md text-black font-light px-3 py-2 border-0 border-b-2 border-b-corduraGreen focus:outline-none focus:border-b-corduraLightGreen focus:ring-0">
                 </div>
                 <div class="flex flex-col justify-start">
                     <label for="message" class=" font-semibold text-sm text-corduraLightGreen py-2">Mensaje o
                         Consulta</label>
-                    <textarea cols="20" rows="5" style="resize:none" name="message" value="{{ old('message') }}"
+                    <textarea cols="20" rows="5" style="resize:none" name="message"
                         class="text-sm rounded-md text-black font-light px-3 py-2 border-0 border-b-2 border-b-corduraGreen focus:outline-none focus:border-b-corduraLightGreen focus:ring-0"></textarea>
                 </div>
                 <div class="flex align-middle mt-2">

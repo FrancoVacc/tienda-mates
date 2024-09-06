@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
 
     //cart
     Route::post('/cart', [CartController::class, 'addToCart'])->name('addtocart');
+    Route::post('/cart/{id}', [CartController::class, 'buyCart'])->name('buycart');
+    Route::delete('/cart/{id}', [CartController::class, 'itemDelete'])->name('itemdelete');
+    Route::patch('/cart/{id}', [CartController::class, 'itemUpdate'])->name('itemupdate');
 
     Route::group(['middleware' => ['role:admin']], function () {
         //products
