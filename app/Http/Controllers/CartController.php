@@ -69,8 +69,4 @@ class CartController extends Controller
         $item->save();
         return redirect('/cart');
     }
-    public function buyCart(string $id)
-    {
-        return $id;
-    }
 }

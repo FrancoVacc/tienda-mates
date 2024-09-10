@@ -2,7 +2,7 @@
     <main>
         <h1 class=" text-center text-2xl text-corduraGreen my-4"> Tu Carrito de Compras</h1>
         <section class="lg:grid grid-cols-6">
-            @if (count($cart->items))
+            @if (isset($cart) && count($cart->items))
                 {{-- mobile version --}}
                 @foreach ($cart->items as $item)
                     <section class=" md:hidden w-full px-1 my-5 ">
@@ -110,7 +110,7 @@
                     <div class=" border border-gray p-4">
                         <h3 class="font-bold text-xl">Total a pagar:</h3>
                         <p>${{ number_format($totalPrice, 2, ',', '.') }}</p>
-                        <form action="{{ route('buycart', $cart->id) }}" method="POST" class="mt-2">
+                        <form action="{{ route('buycart') }}" method="POST" class="mt-2">
                             @csrf
                             <input type="submit" value="Comprar"
                                 class=" py-2 px-5 w-full text-center text-white bg-corduraLightGreen hover:bg-corduraGreen">
@@ -121,8 +121,12 @@
                 </section>
         </section>
     @else
-        <section class=" w-full flex flex-col justify-center bg-gray h-28 mb-4">
+        <section class=" col-span-6 w-full flex flex-col justify-center bg-gray h-28 mb-4">
             <h1 class="text-center text-white font-bold">Oh aún no hay nada por aquí</h1>
+            <a href="{{ route('myorders') }}"
+                class=" text-center rounded-md bg-corduraLightGreen hover:bg-corduraGreen text-white px-4 py-2 mx-auto">
+                Ir a
+                Compras </a>
         </section>
         @endif
     </main>

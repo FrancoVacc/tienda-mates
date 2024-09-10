@@ -4,6 +4,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\clientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserInformationsController;
@@ -34,9 +35,14 @@ Route::middleware('auth')->group(function () {
 
     //cart
     Route::post('/cart', [CartController::class, 'addToCart'])->name('addtocart');
-    Route::post('/cart/{id}', [CartController::class, 'buyCart'])->name('buycart');
     Route::delete('/cart/{id}', [CartController::class, 'itemDelete'])->name('itemdelete');
     Route::patch('/cart/{id}', [CartController::class, 'itemUpdate'])->name('itemupdate');
+
+    //orders
+    Route::post('/order', [OrderController::class, 'create'])->name('buycart');
+    Route::get('/order', [OrderController::class, 'show'])->name('ordersshow');
+    Route::get('/order/my_orders', [OrderController::class, 'myOrders'])->name('myorders');
+    Route::get('/order/my_orders/{id}', [OrderController::class, 'order'])->name('order');
 
     Route::group(['middleware' => ['role:admin']], function () {
         //products

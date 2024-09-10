@@ -88,3 +88,13 @@
 -   se mejoro el carrito en su parte visual
 -   se agregó el boton comprar.
 -   Revisar y diagramar la estructura de la base de datos para una compra
+
+## Día 14
+
+-   migracion y modelo Order
+-   Creacion de OrderController
+-   cargar una orden
+-   eliminar el carrito y sus items
+-   mostrar las orden de compra en una lista dentro del dashboard del comprador
+-   mostrar la orden de compra con todos sus items.
+-   arreglos varios en las vistas

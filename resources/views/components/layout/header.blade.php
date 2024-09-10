@@ -68,11 +68,10 @@
                             <i class="fa-solid fa-user"></i>
                         </a>
                     @else
-                        <form method="POST" action="{{ route('logout') }}"
+                        <a href="{{ route('profile.edit') }}"
                             class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
-                            @csrf
-                            <button><i class="fa-solid fa-right-from-bracket"></i></button>
-                        </form>
+                            <i class="fa-solid fa-user"></i>
+                        </a>
                     @endrole
                 @else
                     <a href="{{ route('login') }}"
