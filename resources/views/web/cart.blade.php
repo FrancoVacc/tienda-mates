@@ -110,11 +110,39 @@
                     <div class=" border border-gray p-4">
                         <h3 class="font-bold text-xl">Total a pagar:</h3>
                         <p>${{ number_format($totalPrice, 2, ',', '.') }}</p>
-                        <form action="{{ route('buycart') }}" method="POST" class="mt-2">
-                            @csrf
-                            <input type="submit" value="Comprar"
-                                class=" py-2 px-5 w-full text-center text-white bg-corduraLightGreen hover:bg-corduraGreen">
-                        </form>
+                        @if (!isset($userInfo->lastname) || !isset($userAddress->postcode))
+                            <div class=" text-center flex flex-col">
+                                <p>Antes de comprar primero debe completar alguns datos</p>
+                                <a href="{{ route('profile.edit') }}"
+                                    class="text-white bg-corduraGreen hover:bg-corduraLightGreen rounded-md px-4 py-2">Completar</a>
+                            </div>
+                        @else
+                            <div class="flex flex-col border-t border-gray">
+                                <p class="border-b border-gray">Antes de comprar chequee sus datos personales</p>
+                                <p class="font-bold">Información Personal</p>
+                                <p class="font-bold">Apellido: <span
+                                        class="font-normal">{{ $userInfo->lastname }}</span></p>
+                                <p class="font-bold">DNI: <span class="font-normal">{{ $userInfo->dni }}</span></p>
+                                <p class="font-bold">Teléfono: <span class="font-normal">{{ $userInfo->phone }}</span>
+                                </p>
+                            </div>
+                            <div class="flex flex-col border-t border-gray">
+                                <p class="font-bold">Dirección de entrega</p>
+                                <p class="font-bold">Ciudad: <span class="font-normal">{{ $userAddress->city }}</span>
+                                </p>
+                                <p class="font-bold">Dirección: <span
+                                        class="font-normal">{{ $userAddress->street . ' ' . $userAddress->number }}</span>
+                                </p>
+                                <p class="font-bold">Código postal: <span
+                                        class="font-normal">{{ $userAddress->postcode }}</span>
+                                </p>
+                            </div>
+                            <form action="{{ route('buycart') }}" method="POST" class="mt-2">
+                                @csrf
+                                <input type="submit" value="Comprar"
+                                    class=" py-2 px-5 w-full text-center text-white bg-corduraLightGreen hover:bg-corduraGreen">
+                            </form>
+                        @endif
                     </div>
 
 

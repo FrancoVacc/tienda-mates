@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserInformationsController;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [clientController::class, 'index'])->name('home');
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function () {
         //message
         Route::get('/message', [clientController::class, 'message_show'])->name('messages_show');
         Route::get('/message/{id}', [clientController::class, 'read_message'])->name('messages_read');
+
+        //Customers
+        Route::get('/customers', [UserInformationsController::class, 'index'])->name('customers');
     });
 });
 

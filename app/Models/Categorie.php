@@ -9,4 +9,9 @@ class Categorie extends Model
 {
     use HasFactory;
     protected $filables = ['categorie', 'img'];
+
+    public function product()
+    {
+        return $this->hasMany('products', 'id_categorie', 'id');
+    }
 }

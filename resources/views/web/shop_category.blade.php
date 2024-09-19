@@ -1,13 +1,18 @@
 <x-layout.layout-web>
     <div class="md:grid md:grid-cols-6">
-        <aside class="mt-4 text-2xl col-span-1">
-            <h2 class="text-black font-bold text-center">Categorias</h2>
-            <ul>
-                @foreach ($categories as $category)
-                    <li class="hover:text-corduraGreen text-center"><a
-                            href="{{ route('category', $category->id) }}">{{ $category->categorie }}</a></li>
-                @endforeach
-            </ul>
+        <aside class="mt-4 text-2xl col-span-1 ">
+            @if (count($categories))
+                <div class="p-4 border-y border-gray ml-4">
+
+                    @foreach ($categories as $category)
+                        <a class="hover:text-corduraGreen text-center block"
+                            href="{{ route('category', $category->id) }}">{{ $category->categorie }}</a>
+                    @endforeach
+                </div>
+
+            @endif
+
+
         </aside>
         <div class=" col-span-5 md:w-[70%] mx-auto mt-4 flex flex-wrap md:grid md:grid-cols-4 p-10 md:px-0">
             @if (count($productos))

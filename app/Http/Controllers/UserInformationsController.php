@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\User;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,8 @@ class UserInformationsController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::with(['user_information', 'address'])->paginate(10);
+        return view('dashboard.customers', compact('users'));
     }
 
     /**

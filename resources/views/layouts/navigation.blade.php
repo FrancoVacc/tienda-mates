@@ -28,6 +28,9 @@
                         <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
                             {{ __('Categorías') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('customers')" :active="request()->routeIs('customers')">
+                            {{ __('Clientes') }}
+                        </x-nav-link>
                     @endrole
                 </div>
             </div>
@@ -104,6 +107,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
                     {{ __('Categorías') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('customers')" :active="request()->routeIs('customers')">
+                    {{ __('Clientes') }}
                 </x-responsive-nav-link>
             @endrole
         </div>

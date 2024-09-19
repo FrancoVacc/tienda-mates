@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Cart_item;
+use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,6 +40,8 @@ class CartController extends Controller
     public function cartShow()
     {
         $userId = Auth::id();
+        $userInfo = user_information::where('id_user', $userId)->first();
+        $userAddress = Address::where('id_user', $userId)->first();
 
         $cart = Cart::where('id_user', $userId)->with('items')->first();
 
@@ -46,7 +50,7 @@ class CartController extends Controller
                 return $item->getTotalPrice();
             });
 
-            return view('web.cart', compact('cart', 'totalPrice'));
+            return view('web.cart', compact('cart', 'totalPrice', 'userInfo', 'userAddress'));
         }
 
         return view('web.cart');

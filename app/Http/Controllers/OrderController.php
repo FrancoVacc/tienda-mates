@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +21,13 @@ class OrderController extends Controller
     public function create()
     {
         $user = Auth::id();
+        $userInfo = user_information::where('id_user', $user)->first();
+        $userAddress = Address::where('id_user', $user)->first();
         $cart = Cart::where('id_user', $user)->with('items')->first();
+
+        if (!isset($userInfo->lastname) || !isset($userInfo->dni) || !isset($userInfo->phone) || !isset($userAddress->city) || !isset($userAddress->street) || !isset($userAddress->postcode)) {
+            return redirect('/profile');
+        }
 
         $items = [];
         foreach ($cart->items as $item) {
@@ -61,22 +69,14 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
 
-        $order_number = $order->order_number;
-        $items = json_decode($order->items);
-        $delivery = $order->delivery;
-        $delivery_date = $order->delivery_date;
-        $track_link = $order->track_link;
-        $price = $order->price;
-        $status = $order->status;
-
         return view('dashboard.order', [
-            'order_number' => $order_number,
-            'items' => $items,
-            'delivery' => $delivery,
-            'delivery_date' => $delivery_date,
-            'track_link' => $track_link,
-            'status' => $status,
-            'price' => $price
+            'order_number' => $order->order_number,
+            'items' => json_decode($order->items),
+            'delivery' => $order->delivery,
+            'delivery_date' => $order->delivery_date,
+            'track_link' => $order->track_link,
+            'status' => $order->status,
+            'price' => $order->price
         ]);
     }
 }

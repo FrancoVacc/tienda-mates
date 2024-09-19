@@ -98,3 +98,7 @@
 -   mostrar las orden de compra en una lista dentro del dashboard del comprador
 -   mostrar la orden de compra con todos sus items.
 -   arreglos varios en las vistas
+
+## Día 15
+
+-   Arreglos visuales y estructurales
