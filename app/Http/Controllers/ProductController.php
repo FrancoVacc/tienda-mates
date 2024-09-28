@@ -14,7 +14,7 @@ class ProductController extends Controller
         if (!empty($request->query()) && $request->query('categorie') != 0) {
 
             $categorie = Categorie::findOrFail($request->query('categorie'));
-            $products = Product::paginate(10)->where('id_categorie', '=', $categorie->id);
+            $products = Product::where('id_categorie', '=', $categorie->id)->paginate(10);
         } else {
             $products = Product::paginate(10);
         }

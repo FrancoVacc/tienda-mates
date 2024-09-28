@@ -41,11 +41,14 @@ Route::middleware('auth')->group(function () {
 
     //orders
     Route::post('/order', [OrderController::class, 'create'])->name('buycart');
-    Route::get('/order', [OrderController::class, 'show'])->name('ordersshow');
     Route::get('/order/my_orders', [OrderController::class, 'myOrders'])->name('myorders');
-    Route::get('/order/my_orders/{id}', [OrderController::class, 'order'])->name('order');
+    Route::get('/order/my_orders/{id}', [OrderController::class, 'myOrder'])->name('myorder');
 
     Route::group(['middleware' => ['role:admin']], function () {
+        //Orders
+        Route::get('/order', [OrderController::class, 'show'])->name('ordersshow');
+        Route::get('/order/{id}', [OrderController::class, 'orderShow'])->name('ordershow');
+        Route::patch('/order/{id}', [OrderController::class, 'update'])->name('ordershow');
         //products
         Route::resource('products', ProductController::class);
 

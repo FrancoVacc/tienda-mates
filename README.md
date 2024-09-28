@@ -102,3 +102,10 @@
 ## Día 15
 
 -   Arreglos visuales y estructurales
+
+## Día 16
+
+-   Selector de forma de pago
+-   Pendiente Integraciones de MP
+-   creacion de modelo y migración de Status y Delivery
+-   Ajuste del frontend para mostrar el Status y el delivery

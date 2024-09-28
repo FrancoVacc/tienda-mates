@@ -4,17 +4,18 @@
             {{ __('Mis Ordenes') }}
         </h2>
     </x-slot>
+
     <section class="flex flex-col">
         <div class=" w-full py-4 ml-2">
             <p class=" font-bold">Número de Orden</p>
-            <p>{{ $order_number }}</p>
+            <p>{{ $order->order_number }}</p>
         </div>
         <div class="lg:grid grid-cols-6">
 
 
             {{-- mobile version --}}
             <section class=" md:hidden w-full px-1 my-5 ">
-                @foreach ($items as $item)
+                @foreach (json_decode($order->items) as $item)
                     <div class=" border border-gray rounded-sm flex flex-col items-center justify-center">
 
                         <img src="{{ asset('img/products/' . $item->img) }}" alt="{{ $item->img }}"
@@ -60,7 +61,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($items as $item)
+                        @foreach (json_decode($order->items) as $item)
                             <tr class="border-b border-gray">
                                 <td class="p-4 ">
 
@@ -85,34 +86,90 @@
                     </tbody>
                 </table>
             </section>
-            <section class="w-full px-1 my-5 lg:col-span-2">
-                <div class=" border border-gray p-4">
-                    <h3 class="font-bold text-xl">Total a pagado:</h3>
-                    <p>${{ number_format($price, 2, ',', '.') }}</p>
-                </div>
-                <div class=" border border-gray p-4">
-                    <h3 class="font-bold text-xl">Fecha de entrega:</h3>
-                    <p>{{ date('d-m-Y', strtotime($delivery_date)) }}</p>
-                </div>
-                <div class=" border border-gray p-4">
-                    <h3 class="font-bold text-xl">Estado:</h3>
-                    <p>{{ $status }}</p>
-                </div>
-                <div class=" border border-gray p-4">
-                    <h3 class="font-bold text-xl">Forma de Envío:</h3>
-                    <p>{{ date('d-m-Y', strtotime($delivery)) }}</p>
-                </div>
-                <div class=" border border-gray p-4">
-                    <h3 class="font-bold text-xl">Link de seguimiento:</h3>
-                    <a href="{{ $track_link }}" class="bg-red px-2 py-1 text-xs text-white rounded-sm">Seguir</a>
-                </div>
+            <div class="w-full px-1 my-5 lg:col-span-2">
+                <section class="w-full px-1 my-5">
+                    <h2 class="text-center font-bold text-xl">Información del Pedido</h2>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold text-xl">Total a pagado:</h3>
+                        <p>${{ number_format($order->price, 2, ',', '.') }}</p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold text-xl">Fecha de entrega:</h3>
+                        <p>{{ date('d-m-Y', strtotime($order->delivery_date)) }}</p>
+                    </div>
+                    <form action="{{ route('ordershow', $order->id) }}" method="POST">
+                        @csrf
+                        @method('patch')
+                        <div class=" border border-gray p-4">
+                            <h3 class="font-bold text-xl">Estado:</h3>
+                            <select name="status" id="">
+                                @foreach ($status as $item)
+                                    @if ($order->id_status == $item->id)
+                                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                    @else
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class=" border border-gray p-4">
+                            <h3 class="font-bold text-xl">Forma de Envío:</h3>
+                            <select name="delivery" id="">
+                                @foreach ($delivery as $item)
+                                    @if ($order->id_delivery == $item->id)
+                                        <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
+                                    @else
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endif
+                                @endforeach
 
-                {{-- 'delivery' => $delivery,
-                'delivery_date' => $delivery_date,
-                'track_link' => $track_link,
-                'status' => $status, --}}
+                            </select>
+                        </div>
+                        <div class=" border border-gray p-4">
+                            <h3 class="font-bold text-xl">Link de seguimiento:</h3>
+                            <input type="text" name="track_link" value="{{ $order->track_link }}">
+                        </div>
+                        <div class=" border border-gray p-4">
+                            <button class=" bg-red hover:bg-lightRed text-white px-5 py-2"> Actualizar</button>
+                        </div>
 
-            </section>
+                    </form>
+                </section>
+                <section class="w-full px-1 my-5">
+                    <h2 class="text-center font-bold text-xl">Información del Cliente</h2>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Nombre y Apellido:</h3>
+                        <p>{{ $order->user->name . ' ' . $user_info->lastname }}</p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">D.N.I:</h3>
+                        <p>{{ $user_info->dni }}</p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Teléfono:</h3>
+                        <p>{{ $user_info->phone }}</p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Email:</h3>
+                        <p>{{ $order->user->email }}</p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Dirección:</h3>
+                        <p>{{ $address->street . ' ' . $address->number . ' | ' . $address->city . ' | ' . $address->province . ' - ' . $address->country }}
+                        </p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Código Postal:</h3>
+                        <p>{{ $address->postcode }}
+                        </p>
+                    </div>
+                    <div class=" border border-gray p-4">
+                        <h3 class="font-bold">Descripción:</h3>
+                        <p>{{ $address->description }}
+                        </p>
+                    </div>
+                </section>
+            </div>
         </div>
     </section>
 </x-app-layout>

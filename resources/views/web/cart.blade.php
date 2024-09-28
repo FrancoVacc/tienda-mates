@@ -119,7 +119,7 @@
                         @else
                             <div class="flex flex-col border-t border-gray">
                                 <p class="border-b border-gray">Antes de comprar chequee sus datos personales</p>
-                                <p class="font-bold">Información Personal</p>
+                                <p class="text-center font-bold">Información Personal</p>
                                 <p class="font-bold">Apellido: <span
                                         class="font-normal">{{ $userInfo->lastname }}</span></p>
                                 <p class="font-bold">DNI: <span class="font-normal">{{ $userInfo->dni }}</span></p>
@@ -127,7 +127,7 @@
                                 </p>
                             </div>
                             <div class="flex flex-col border-t border-gray">
-                                <p class="font-bold">Dirección de entrega</p>
+                                <p class="text-center font-bold">Dirección de entrega</p>
                                 <p class="font-bold">Ciudad: <span class="font-normal">{{ $userAddress->city }}</span>
                                 </p>
                                 <p class="font-bold">Dirección: <span
@@ -137,11 +137,26 @@
                                         class="font-normal">{{ $userAddress->postcode }}</span>
                                 </p>
                             </div>
-                            <form action="{{ route('buycart') }}" method="POST" class="mt-2">
-                                @csrf
-                                <input type="submit" value="Comprar"
-                                    class=" py-2 px-5 w-full text-center text-white bg-corduraLightGreen hover:bg-corduraGreen">
-                            </form>
+                            <div class="flex flex-col border-t border-gray">
+                                <h2 class="text-center font-bold">Formas de Pago</h2>
+                                <select name="" id="selector">
+                                    <option value="0"> - Seleccione una Opcion -</option>
+                                    <option value="1"> Mercado Pago</option>
+                                    <option value="2"> Transferencia Bancaria</option>
+                                </select>
+                            </div>
+                            <div id="mercadopago" class="hidden">
+                                <p>mercadopago</p>
+                            </div>
+                            <div id="comprar" class="hidden">
+                                <p>Usted está a punto de comprar a través de transferencia bancaria, deberá realizar la
+                                    transferencia y enviar el comprobande de pago a través de correo electrónico</p>
+                                <form action="{{ route('buycart') }}" method="POST" class="mt-2">
+                                    @csrf
+                                    <input type="submit" value="Comprar"
+                                        class=" py-2 px-5 w-full text-center text-white bg-corduraLightGreen hover:bg-corduraGreen">
+                                </form>
+                            </div>
                         @endif
                     </div>
 
@@ -157,5 +172,29 @@
                 Compras </a>
         </section>
         @endif
+        <script>
+            const selector = document.getElementById('selector');
+            const mercadopago = document.getElementById('mercadopago');
+            const comprar = document.getElementById('comprar');
+
+            selector.addEventListener('change', () => {
+
+
+                if (selector.value == 0) {
+                    comprar.classList.add('hidden');
+                    mercadopago.classList.add('hidden');
+                }
+                if (selector.value == 1) {
+                    comprar.classList.add('hidden');
+                    mercadopago.classList.remove('hidden');
+                    mercadopago.classList.add('block');
+                }
+                if (selector.value == 2) {
+                    mercadopago.classList.add('hidden');
+                    comprar.classList.remove('hidden');
+                    comprar.classList.add('block');
+                }
+            })
+        </script>
     </main>
 </x-layout.layout-web>

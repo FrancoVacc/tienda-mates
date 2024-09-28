@@ -17,7 +17,5 @@ class SeederTablaRolHasPermissions extends Seeder
     {
         $adminRole = Role::findByName('admin');
         $adminRole->syncPermissions(Permission::all());
-        $user = User::find(1);
-        $user->assignRole('admin');
     }
 }

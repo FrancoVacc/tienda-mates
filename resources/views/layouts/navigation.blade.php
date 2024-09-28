@@ -28,6 +28,9 @@
                         <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
                             {{ __('Categorías') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('ordersshow')" :active="request()->routeIs('ordersshow')">
+                            {{ __('Ordenes de Compra') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('customers')" :active="request()->routeIs('customers')">
                             {{ __('Clientes') }}
                         </x-nav-link>
@@ -107,6 +110,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories')">
                     {{ __('Categorías') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('ordersshow')" :active="request()->routeIs('ordersshow')">
+                    {{ __('Ordenes de Compra') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('customers')" :active="request()->routeIs('customers')">
                     {{ __('Clientes') }}

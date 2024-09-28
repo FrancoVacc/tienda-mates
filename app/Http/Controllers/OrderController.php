@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Cart;
+use App\Models\Delivery;
 use App\Models\Order;
+use App\Models\Status;
+use App\Models\User;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +16,20 @@ class OrderController extends Controller
 {
     public function show()
     {
-        //mostrar una tabla con todos los pedidos, nombres de los clientes, etc.
-        //mostrar acciones
-        // cuando haga click mostrar todo el pedido del cliente usando el numero de orden.
+        $orders = order::with('user', 'statusInfo')->paginate(10);
+        return view('dashboard.orders', compact('orders'));
+    }
+    public function orderShow(string $id)
+    {
+        $order = Order::with('user')->where('id', '=', $id)->findOrFail($id);
+        $user_info = user_information::findOrFail($order->user->id);
+        $address = Address::findOrFail($order->user->id);
+        $status = Status::all();
+        $delivery = Delivery::all();
+        return view(
+            'dashboard.order',
+            compact('order', 'delivery', 'status', 'user_info', 'address')
+        );
     }
 
     public function create()
@@ -55,28 +69,32 @@ class OrderController extends Controller
         ]);
 
         Cart::destroy($cart->id);
+        return redirect('/order/my_orders');
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->update([
+            'id_status' => $request->status,
+            'id_delivery' => $request->delivery,
+            'track_link' => $request->track_link
+        ]);
+
+        return redirect('/order/' . $id);
     }
 
     public function myOrders()
     {
         $user = Auth::id();
-        $orders = Order::all()->where('id_user', '=', $user);
+        $orders = Order::with('statusInfo')->where('id_user', '=', $user)->get();
 
-        return view('dashboard.orders', compact('orders'));
+        return view('dashboard.myorders', compact('orders'));
     }
 
-    public function order(String $id)
+    public function myOrder(String $id)
     {
-        $order = Order::findOrFail($id);
-
-        return view('dashboard.order', [
-            'order_number' => $order->order_number,
-            'items' => json_decode($order->items),
-            'delivery' => $order->delivery,
-            'delivery_date' => $order->delivery_date,
-            'track_link' => $order->track_link,
-            'status' => $order->status,
-            'price' => $order->price
-        ]);
+        $order = Order::with('deliveryInfo')->findOrFail($id);
+        return view('dashboard.myorder', compact('order'));
     }
 }

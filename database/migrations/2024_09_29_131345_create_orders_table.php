@@ -17,10 +17,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->json('items')->nullable();
-            $table->string('delivery')->nullable();
+            $table->unsignedBigInteger('id_delivery')->default(1);
+            $table->foreign('id_delivery')->references('id')->on('deliveries')->onDelete('cascade');
             $table->dateTime('delivery_date');
             $table->string('track_link')->nullable();
-            $table->string('status')->default('pendiente');
+            $table->unsignedBigInteger('id_status')->default(1);
+            $table->foreign('id_status')->references('id')->on('statuses')->onDelete('cascade');
             $table->decimal('price', 8, 2);
             $table->timestamps();
         });
@@ -31,6 +33,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropForeign(['id_user']);
+            $table->dropColumn('id_user');
+        });
+
         Schema::dropIfExists('orders');
     }
 };

@@ -12,10 +12,25 @@ class Order extends Model
         'order_number',
         'id_user',
         'items',
-        'delivery',
+        'id_delivery',
         'delivery_date',
         'track_link',
-        'status',
+        'id_status',
         'price'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function deliveryInfo()
+    {
+        return $this->belongsTo(Delivery::class, 'id_delivery', 'id');
+    }
+
+    public function statusInfo()
+    {
+        return $this->belongsTo(Status::class, 'id_status', 'id');
+    }
 }
