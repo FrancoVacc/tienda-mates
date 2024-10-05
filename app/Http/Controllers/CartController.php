@@ -33,6 +33,8 @@ class CartController extends Controller
             'img' => $request->img
         ]);
 
+        $items = Cart::where('id_user', $userId)->with('items')->first();
+        session(['items' => count($items->items)]);
 
         return redirect('producto/' . $request->id);
     }
@@ -59,6 +61,10 @@ class CartController extends Controller
     public function itemDelete($id)
     {
         Cart_item::destroy($id);
+        $userId = Auth::id();
+        $items = Cart::where('id_user', $userId)->with('items')->first();
+        session(['items' => count($items->items)]);
+
         return redirect('/cart');
     }
     public function itemUpdate(Request $request, $id)

@@ -109,3 +109,10 @@
 -   Pendiente Integraciones de MP
 -   creacion de modelo y migración de Status y Delivery
 -   Ajuste del frontend para mostrar el Status y el delivery
+
+## Día 17
+
+-   Refactorización de componentes visuales
+-   Refactorización de cart-btn
+-   Contador de items
+-   Refactorización del menú del dashboard.

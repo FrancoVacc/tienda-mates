@@ -7,7 +7,7 @@
                 <img src="{{ asset('img/tu logo.svg') }}" class="max-w-[70px]"></img>
             </div>
             <nav class=" hidden ml-60 md:w-[40%] md:flex align-middle">
-                <ul class="flex text-corduraLightGreen  w-[100%] justify-around my-auto text-base">
+                <ul class="flex text-corduraLightGreen  w-[100%] justify-around items-end my-auto text-base">
                     <li><a href="{{ route('home') }}"
                             class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Home</a>
                     </li>
@@ -22,9 +22,7 @@
 
                     @if (Route::has('login'))
                         @auth
-                            <li><a href="{{ route('cart') }}"
-                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                    <i class="fa-solid fa-cart-shopping"></i></a></li>
+                            <x-cart-btn></x-cart-btn>
                             @role('admin')
                                 <li><a href="{{ route('dashboard') }}"
                                         class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
@@ -58,10 +56,10 @@
 
             @if (Route::has('login'))
                 @auth
-                    <a href="{{ route('cart') }}"
-                        class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </a>
+                    <div class="flex md:hidden">
+                        <x-cart-btn></x-cart-btn>
+                    </div>
+
                     @role('admin')
                         <a href="{{ route('dashboard') }}"
                             class=" md:hidden text-2xl mr-5 md:ml-0 text-corduraLightGreen hover:text-corduraGreen  hover:border-b-2 hover:border-corduraGreen my-auto md:text-base ">

@@ -22,9 +22,7 @@ Route::get('/producto/{id}', [clientController::class, 'product'])->name('produc
 
 Route::get('/cart', [CartController::class, 'cartShow'])->middleware(['auth', 'verified'])->name('cart');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,6 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/order/my_orders/{id}', [OrderController::class, 'myOrder'])->name('myorder');
 
     Route::group(['middleware' => ['role:admin']], function () {
+        //Dashboard
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        })->middleware(['auth', 'verified'])->name('dashboard');
+
         //Orders
         Route::get('/order', [OrderController::class, 'show'])->name('ordersshow');
         Route::get('/order/{id}', [OrderController::class, 'orderShow'])->name('ordershow');

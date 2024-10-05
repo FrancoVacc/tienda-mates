@@ -6,7 +6,7 @@
         <div class=" md:w-[50%]">
             <h1 class=" font-bold text-4xl mb-2">{{ $product->title }}</h1>
 
-            <p class="text-xl font-bold my-4">${{ $product->price }}</p>
+            <p class="text-xl font-bold my-4">${{ number_format($product->price, 2, ',', '.') }}</p>
             @if ($product->available)
                 <form action="{{ route('addtocart') }}" method="POST"
                     class="flex flex-col md:flex-row border-y border-y-gray pb-4">

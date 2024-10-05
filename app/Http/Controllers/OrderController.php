@@ -69,6 +69,9 @@ class OrderController extends Controller
         ]);
 
         Cart::destroy($cart->id);
+
+        session(['items' => 0]);
+
         return redirect('/order/my_orders');
     }
 
