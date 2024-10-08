@@ -4,6 +4,10 @@
             <div class=" text-center mr-5 md:ml-0">
                 <span class="text-sm text-corduraLightGreen">{{ session('items') }}</span>
             </div>
+        @else
+            <div class=" text-center mr-5 md:ml-0">
+                <span class="text-sm text-black">{{ session('items') }}</span>
+            </div>
         @endif
     @endsession
     <a href="{{ route('cart') }}"

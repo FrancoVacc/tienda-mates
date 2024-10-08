@@ -116,3 +116,7 @@
 -   Refactorización de cart-btn
 -   Contador de items
 -   Refactorización del menú del dashboard.
+
+## Día 18
+
+-   Refactorizacón del menu de Breeze

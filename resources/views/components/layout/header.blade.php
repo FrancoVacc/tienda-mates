@@ -2,41 +2,66 @@
     <div class="flex align-middle justify-between md:justify-normal border-b-2 border-corduraGreen">
 
         {{-- nav clasico --}}
+
         <div class="hidden w-full md:flex justify-between align-middle h-[150px] duration-700" id="md-nav">
-            <div class=" md:ml-10 p-2 flex align-middle">
-                <img src="{{ asset('img/tu logo.svg') }}" class="max-w-[70px]"></img>
-            </div>
+            <x-application-logo />
             <nav class=" hidden ml-60 md:w-[40%] md:flex align-middle">
                 <ul class="flex text-corduraLightGreen  w-[100%] justify-around items-end my-auto text-base">
-                    <li><a href="{{ route('home') }}"
-                            class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Home</a>
+                    <li>
+                        <x-nav-link :href="route('home')"
+                            class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                            {{ __('Home') }}
+                        </x-nav-link>
+
                     </li>
-                    <li><a href="{{ route('shop') }}"
-                            class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Tienda</a></li>
-                    <li><a href="{{ route('about') }}"
-                            class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Nosotros</a></li>
-                    <li><a href="{{ route('contact') }}"
-                            class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">Contacto</a></li>
+                    <li>
+                        <x-nav-link :href="route('shop')"
+                            class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                            {{ __('Tienda') }}
+                        </x-nav-link>
+                    </li>
+                    <li>
+                        <x-nav-link :href="route('about')"
+                            class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                            {{ __('Nosotros') }}
+                        </x-nav-link>
+
+                    </li>
+                    <li>
+                        <x-nav-link :href="route('contact')"
+                            class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                            {{ __('Contacto') }}
+                        </x-nav-link>
+
+                    </li>
 
 
 
                     @if (Route::has('login'))
                         @auth
-                            <x-cart-btn></x-cart-btn>
+                            <x-cart-btn />
                             @role('admin')
-                                <li><a href="{{ route('dashboard') }}"
-                                        class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                        <i class="fa-solid fa-user"></i></a></li>
+                                <li>
+                                    <x-nav-link :href="route('dashboard')"
+                                        class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                        <i class="fa-solid fa-user"></i></a>
+                                </li>
+                                </x-nav-link>
                             @else
-                                <li><a href="{{ route('profile.edit') }}"
-                                        class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                        <i class="fa-solid fa-user"></i></a></li>
+                                <li>
+                                    <x-nav-link :href="route('profile.edit')"
+                                        class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                        <i class="fa-solid fa-user"></i></a>
+                                    </x-nav-link>
+                                </li>
                             @endrole
                         @else
-                            <li><a href="{{ route('login') }}"
-                                    class="hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                    Iniciar Sesión
-                                </a></li>
+                            <li>
+                                <x-nav-link :href="route('login')"
+                                    class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
+                                    {{ __('Iniciar Sesión') }}
+                                </x-nav-link>
+                            </li>
                         @endauth
                     @endif
                 </ul>
@@ -57,7 +82,7 @@
             @if (Route::has('login'))
                 @auth
                     <div class="flex md:hidden">
-                        <x-cart-btn></x-cart-btn>
+                        <x-cart-btn />
                     </div>
 
                     @role('admin')
