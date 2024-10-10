@@ -120,3 +120,4 @@
 ## Día 18
 
 -   Refactorizacón del menu de Breeze
+-   Refactorización del Login, Register & password
