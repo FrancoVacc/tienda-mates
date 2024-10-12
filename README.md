@@ -121,3 +121,12 @@
 
 -   Refactorizacón del menu de Breeze
 -   Refactorización del Login, Register & password
+
+## Día 19
+
+-   Aplicar Emails
+    -   Message (listo)
+    -   Cuando un cliente compra un carrito
+        -   uno al cliente con el numero de pedido, los items y el total a pagar (listo)
+        -   uno al admin con el pedido (listo)
+    -   Cuando se actualiza el estado del Carrito (listo)

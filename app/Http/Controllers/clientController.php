@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MessageMailable;
 use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\Message;
@@ -9,6 +10,7 @@ use App\Models\Product;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class clientController extends Controller
@@ -56,6 +58,8 @@ class clientController extends Controller
         $message->message = $request->message;
         $message->readed = false;
         $message->save();
+
+        Mail::to('admin@mates.com')->send(new MessageMailable($message));
 
         return redirect('contacto');
     }

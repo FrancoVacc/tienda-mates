@@ -36,6 +36,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $orders->links() }}
         </section>
     @else
         <section class=" col-span-6 w-full flex flex-col justify-center bg-gray h-28 mb-4">

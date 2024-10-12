@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminOrderMailable;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Status;
 use App\Models\User;
+use App\Mail\ClientCartBuyMailable;
+use App\Mail\ClientCartMailable;
+use App\Mail\OrderStatusMailable;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -34,10 +39,10 @@ class OrderController extends Controller
 
     public function create()
     {
-        $user = Auth::id();
-        $userInfo = user_information::where('id_user', $user)->first();
-        $userAddress = Address::where('id_user', $user)->first();
-        $cart = Cart::where('id_user', $user)->with('items')->first();
+        $user = User::findOrFail(Auth::id());
+        $userInfo = user_information::where('id_user', $user->id)->first();
+        $userAddress = Address::where('id_user', $user->id)->first();
+        $cart = Cart::where('id_user', $user->id)->with('items')->first();
 
         if (!isset($userInfo->lastname) || !isset($userInfo->dni) || !isset($userInfo->phone) || !isset($userAddress->city) || !isset($userAddress->street) || !isset($userAddress->postcode)) {
             return redirect('/profile');
@@ -58,15 +63,20 @@ class OrderController extends Controller
             return $item->getTotalPrice();
         });
 
-        $order_number = 'u' . $user . 'd' . date('U');
+        $order_number = 'u' . $user->id . 'd' . date('U');
 
         Order::create([
             'order_number' => $order_number,
-            'id_user' => $user,
+            'id_user' => $user->id,
             'items' => json_encode($items),
             'delivery_date' => date("Y-m-d", strtotime(date('Y-m-d') . "+ 1 week")),
             'price' => $totalPrice,
         ]);
+
+        $order = Order::all()->where('order_number', '=', $order_number)->first();
+
+        Mail::to($user->email)->send(new ClientCartMailable($user, $order));
+        Mail::to(User::findOrFail(1))->send(new AdminOrderMailable($user, $order));
 
         Cart::destroy($cart->id);
 
@@ -84,13 +94,17 @@ class OrderController extends Controller
             'track_link' => $request->track_link
         ]);
 
+        $user = User::findOrFail($order->id_user);
+
+        Mail::to($user->email, $user->name)->send(new OrderStatusMailable($order));
+
         return redirect('/order/' . $id);
     }
 
     public function myOrders()
     {
         $user = Auth::id();
-        $orders = Order::with('statusInfo')->where('id_user', '=', $user)->get();
+        $orders = Order::with('statusInfo')->where('id_user', '=', $user)->paginate(10);
 
         return view('dashboard.myorders', compact('orders'));
     }
