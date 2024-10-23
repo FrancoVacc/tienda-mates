@@ -6,6 +6,7 @@ use App\Models\Address;
 use App\Models\User;
 use App\Models\user_information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class UserInformationsController extends Controller
 {
@@ -67,7 +68,7 @@ class UserInformationsController extends Controller
         $information->dni = $request->dni;
         $information->save();
 
-        return redirect('profile');
+        return Redirect::route('profile.edit')->with(['type' => 'success', 'message' => 'Información Actulaizada']);
     }
 
     /**

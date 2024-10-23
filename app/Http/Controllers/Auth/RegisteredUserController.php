@@ -44,9 +44,9 @@ class RegisteredUserController extends Controller
         ]);
 
         //Asignar rol cliente a todos los usuarios nuevos
-        if ($user->id == 1) {
-            $user->assignRole('admin');
-        }
+        // if ($user->id == 1) {
+        //     $user->assignRole('admin');
+        // }
         $user->assignRole('cliente');
 
         // agregar un user information nuevo

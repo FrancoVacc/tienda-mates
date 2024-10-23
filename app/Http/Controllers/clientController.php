@@ -61,7 +61,10 @@ class clientController extends Controller
 
         Mail::to('admin@mates.com')->send(new MessageMailable($message));
 
-        return redirect('contacto');
+        return redirect('contacto')->with([
+            'message' => 'Mensaje enviado con Éxito',
+            'type' => 'success'
+        ]);
     }
 
     public function message_show()
@@ -83,6 +86,11 @@ class clientController extends Controller
         return view('dashboard.message', compact('message'));
     }
 
+    public function message_delete(string $id)
+    {
+        Message::destroy($id);
+        return redirect('message')->with(['message' => 'Mensaje eliminado Correctamente', 'type' => 'success']);
+    }
     public function shop()
     {
         $categories = Categorie::all();

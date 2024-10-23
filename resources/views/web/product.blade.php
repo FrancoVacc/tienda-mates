@@ -1,4 +1,7 @@
 <x-layout.layout-web>
+    @session('message')
+        <x-message-add :type="session('type')" :message="session('message')" />
+    @endsession
     <div class=" md:w-[80%] mx-auto p-4 md:pt-10  md:flex">
         <div class=" md:w-[50%] md:mr-4">
             <img src="{{ asset('img/products/' . $product->img) }}" alt="{{ $product->title }}">
@@ -39,4 +42,5 @@
         </div>
 
     </div>
+    <script src="{{ asset('js/alertTimeout.js') }}"></script>
 </x-layout.layout-web>

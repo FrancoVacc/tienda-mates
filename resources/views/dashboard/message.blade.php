@@ -14,15 +14,24 @@
                 <p>Teléfono: {{ $message->phone }}</p>
             </div>
         </div>
-        <div class="flex flex-wrap justify-between mt-5">
-            <div>
+        <div class="mt-5 flex flex-col  justify-between">
+            <div class=" p-2 mt-2">
                 <a class="px-2 py-4 text-white bg-blue hover:bg-lightBlue rounded-md"
                     href="mailto:{{ $message->email }}">Responder
                     Email</a>
             </div>
-            <div>
+            <div class=" p-2 mt-5">
                 <a class="px-2 py-4 text-white bg-blue hover:bg-lightBlue rounded-md"
                     href="https://wa.me/549{{ $message->phone }}/">Enviar Whatsapp</a>
+            </div>
+            <div class=" p-2 mt-2">
+                <form action="{{ route('message_delete', $message->id) }}" method="POST">
+                    @method('delete')
+                    @csrf
+                    <input type="submit" value="Eliminar"
+                        class="px-2 py-4 text-white bg-red hover:bg-lightRed rounded-md">
+                </form>
+
             </div>
         </div>
 

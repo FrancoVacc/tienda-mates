@@ -33,6 +33,8 @@ class AuthenticatedSessionController extends Controller
         $items = Cart::where('id_user', $userId)->with('items')->first();
         if (isset($items)) {
             session(['items' => count($items->items)]);
+        } else {
+            session(['items' => 0]);
         }
 
         return redirect()->intended(route('home', absolute: false));

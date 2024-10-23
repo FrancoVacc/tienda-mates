@@ -8,6 +8,7 @@ use App\Models\Cart_item;
 use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CartController extends Controller
 {
@@ -36,7 +37,7 @@ class CartController extends Controller
         $items = Cart::where('id_user', $userId)->with('items')->first();
         session(['items' => count($items->items)]);
 
-        return redirect('producto/' . $request->id);
+        return redirect('producto/' . $request->id)->with(['message' => 'El producto fue añadido a tu carrito correctamente', 'type' => 'success']);
     }
 
     public function cartShow()
@@ -65,7 +66,7 @@ class CartController extends Controller
         $items = Cart::where('id_user', $userId)->with('items')->first();
         session(['items' => count($items->items)]);
 
-        return redirect('/cart');
+        return Redirect::route('cart')->with(['message' => 'El producto fué quitado de tu carrito', 'type' => 'success']);
     }
     public function itemUpdate(Request $request, $id)
     {
@@ -77,6 +78,6 @@ class CartController extends Controller
 
         $item->cuantity = $request->cuantity;
         $item->save();
-        return redirect('/cart');
+        return Redirect::route('cart')->with(['message' => 'La cantidad fué actualizada correctamente', 'type' => 'success']);
     }
 }

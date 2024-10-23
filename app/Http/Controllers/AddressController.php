@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AddressController extends Controller
 {
@@ -30,6 +31,6 @@ class AddressController extends Controller
         $address->description = $request->description;
         $address->save();
 
-        return redirect('profile');
+        return Redirect::route('profile.edit')->with(['message' => 'Dirección actualizada', 'type' => 'success']);
     }
 }

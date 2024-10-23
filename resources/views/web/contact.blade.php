@@ -1,4 +1,8 @@
 <x-layout.layout-web>
+
+    @session('message')
+        <x-message-add :type="session('type')" :message="session('message')" />
+    @endsession
     <main class="bg-white md:flex md:mt-5 md:mb-5 md:justify-around">
         <div class="p-2 md:w-[50%] z-0 sm:z-0">
             <x-maps-leaflet :centerPoint="['lat' => -33.150551, 'long' => -59.305123]" :markers="[['lat' => -33.150551, 'long' => -59.305123]]"></x-maps-leaflet>
@@ -52,5 +56,5 @@
             </form>
         </div>
     </main>
-
+    <script src="{{ asset('js/alertTimeout.js') }}"></script>
 </x-layout.layout-web>

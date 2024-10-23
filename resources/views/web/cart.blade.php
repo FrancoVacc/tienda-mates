@@ -1,4 +1,7 @@
 <x-layout.layout-web>
+    @session('message')
+        <x-message-add :type="session('type')" :message="session('message')" />
+    @endsession
     <main>
         <h1 class=" text-center text-2xl text-corduraGreen my-4"> Tu Carrito de Compras</h1>
         <section class="lg:grid grid-cols-6">
@@ -196,5 +199,6 @@
                 }
             })
         </script>
+        <script src="{{ asset('js/alertTimeout.js') }}"></script>
     </main>
 </x-layout.layout-web>

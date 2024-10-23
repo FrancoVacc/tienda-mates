@@ -20,11 +20,11 @@ Route::get('/categoria/{id}', [clientController::class, 'category'])->name('cate
 Route::get('/producto/{id}', [clientController::class, 'product'])->name('producto');
 
 
-Route::get('/cart', [CartController::class, 'cartShow'])->middleware(['auth', 'verified'])->name('cart');
 
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'cartShow'])->name('cart');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/userinformation/{user_information}', [UserInformationsController::class, 'update'])->name('userinformation.update');
@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
         //message
         Route::get('/message', [clientController::class, 'message_show'])->name('messages_show');
         Route::get('/message/{id}', [clientController::class, 'read_message'])->name('messages_read');
+        Route::delete('/message/{id}', [clientController::class, 'message_delete'])->name('message_delete');
 
         //Customers
         Route::get('/customers', [UserInformationsController::class, 'index'])->name('customers');

@@ -4,6 +4,9 @@
             {{ __('Mi Perfil') }}
         </h2>
     </x-slot>
+    @session('message')
+        <x-message-add :type="session('type')" :message="session('message')" />
+    @endsession
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -140,4 +143,5 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('js/alertTimeout.js') }}"></script>
 </x-app-layout>

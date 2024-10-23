@@ -130,3 +130,13 @@
         -   uno al cliente con el numero de pedido, los items y el total a pagar (listo)
         -   uno al admin con el pedido (listo)
     -   Cuando se actualiza el estado del Carrito (listo)
+
+## Día 20
+
+-   Mensajes de Error y de confirmación
+-   Mensajes de confirmación
+    -   Cuando agrege un item al carrito (listo)
+    -   Cuando elimine o actualice un articulo en el carrito (listo)
+    -   Cuando actualice los datos (listo)
+    -   Cuando envie un mensaje (listo)
+-   Crear el usuario Admin a través de un seeder

@@ -5,7 +5,9 @@
         </h2>
     </x-slot>
     @if (count($orders))
-
+        @session('message')
+            <x-message-add :type="session('type')" :message="session('message')" />
+        @endsession
         <section>
             <table class="w-full text-sm text-left rtl:text-right">
                 <thead class="text-xs text-white uppercase bg-gray">
@@ -31,6 +33,7 @@
             </table>
             {{ $orders->links() }}
         </section>
+        <script src="{{ asset('js/alertTimeout.js') }}"></script>
     @else
         <section class=" col-span-6 w-full flex flex-col justify-center bg-gray h-28 mb-4">
             <h1 class="text-center text-white font-bold">Oh aún no hay nada por aquí</h1>

@@ -16,6 +16,7 @@ use App\Models\user_information;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -82,7 +83,7 @@ class OrderController extends Controller
 
         session(['items' => 0]);
 
-        return redirect('/order/my_orders');
+        return Redirect::route('myorders')->with(['message' => 'Tu compra fué realizada con éxito', 'type' => 'success']);
     }
 
     public function update(Request $request, string $id)
@@ -105,7 +106,6 @@ class OrderController extends Controller
     {
         $user = Auth::id();
         $orders = Order::with('statusInfo')->where('id_user', '=', $user)->paginate(10);
-
         return view('dashboard.myorders', compact('orders'));
     }
 
