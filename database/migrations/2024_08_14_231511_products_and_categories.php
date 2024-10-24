@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('price');
             $table->string('description');
             $table->boolean('available');
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->unsignedBigInteger('id_categorie');
             $table->foreign('id_categorie')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

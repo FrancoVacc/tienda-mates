@@ -14,4 +14,9 @@ class Categorie extends Model
     {
         return $this->hasMany('products', 'id_categorie', 'id');
     }
+
+    public function imgUrl()
+    {
+        return cloudinary()->getUrl($this->img);
+    }
 }

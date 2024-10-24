@@ -31,8 +31,10 @@
                                     {{ $category->categorie }}
                                 </th>
                                 <td class="px-6 py-4 hidden md:table-cell">
-                                    <img src="{{ asset($category->img) }}" alt="{{ $category->categorie }}"
-                                        class=" w-32 rounded-md">
+                                    @if ($category->imgUrl() !== null)
+                                        <img src="{{ $category->imgUrl() }}" alt="{{ $category->categorie }}"
+                                            class=" w-32 rounded-md">
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     <a href="{{ route('categories.edit', $category->id) }}"

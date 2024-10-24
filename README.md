@@ -140,3 +140,7 @@
     -   Cuando actualice los datos (listo)
     -   Cuando envie un mensaje (listo)
 -   Crear el usuario Admin a través de un seeder
+
+## Día 21
+
+-   Añadir Cloudinary para gestionar las imágenes (listo)

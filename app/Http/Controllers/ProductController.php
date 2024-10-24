@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -48,9 +49,8 @@ class ProductController extends Controller
         $product = new Product();
         if ($request->hasFile('img')) {
             $file = $request->file('img');
-            $filePath = 'img/products/';
-            $fileName = $request->slug;
-            $file->move($filePath, $fileName);
+            $cloudinaryImg = $file->storeOnCloudinary('products');
+            $publicId = $cloudinaryImg->getPublicId();
         }
 
 
@@ -64,10 +64,10 @@ class ProductController extends Controller
         }
         $product->id_categorie = $request->categorie;
         $product->description = $request->description;
-        $product->img = $request->hasFile('img') ? $request->slug : null;
+        $product->img = $request->hasFile('img') ? $publicId : null;
         $product->save();
 
-        return redirect('products');
+        return Redirect::route('products.index');
     }
 
     /**
@@ -102,17 +102,14 @@ class ProductController extends Controller
             'img' => 'file|image'
         ]);
 
+        $product = Product::findOrFail($id);
+
         if ($request->hasFile('img')) {
             $file = $request->file('img');
-            $filePath = 'img/products/';
-            $fileName = $request->slug;
-            if (file_exists($filePath . '/' . $fileName)) {
-                unlink($filePath . '/' . $fileName);
-            }
-            $file->move($filePath, $fileName);
+            $cloudinaryImg = $file->storeOnCloudinary('products');
+            $publicId = $cloudinaryImg->getPublicId();
         }
 
-        $product = Product::findOrFail($id);
 
         $product->title = $request->title;
         $product->slug = $request->slug;
@@ -124,7 +121,7 @@ class ProductController extends Controller
         }
         $product->id_categorie = $request->categorie;
         $product->description = $request->description;
-        $product->img = $request->slug;
+        $product->img = $publicId;
         $product->save();
 
         return redirect('products');
@@ -135,14 +132,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $filePath = 'img/products';
-        $product = Product::find($id);
-        $img = $product->slug;
-        $fileName = $filePath . '/' . $img;
+        // $filePath = 'img/products';
+        // $product = Product::find($id);
+        // $img = $product->slug;
+        // $fileName = $filePath . '/' . $img;
 
-        if (file_exists($fileName)) {
-            unlink($fileName);
-        }
+        // if (file_exists($fileName)) {
+        //     unlink($fileName);
+        // }
 
         Product::destroy($id);
         return redirect('products');

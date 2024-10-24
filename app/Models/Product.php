@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['titulo', 'slug', 'price', 'description', 'available'];
+    protected $fillable = ['titulo', 'slug', 'price', 'description', 'available', 'img'];
 
     public function category()
     {
         return $this->belongsTo(Categorie::class, 'id_categorie');
+    }
+    public function imgUrl()
+    {
+        return cloudinary()->getUrl($this->img);
     }
 }

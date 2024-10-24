@@ -11,8 +11,7 @@
                     <section class=" md:hidden w-full px-1 my-5 ">
                         <div class=" border border-gray rounded-sm flex flex-col items-center justify-center">
 
-                            <img src="{{ asset('img/products/' . $item->img) }}" alt="{{ $item->img }}"
-                                class=" w-20 rounded-sm my-2">
+                            <img src="{{ $item->img }}" alt="{{ $item->product_title }}" class=" w-20 rounded-sm my-2">
                             <div class=" w-full pl-3 border-t border-t-gray">
                                 <p class=" font-bold">Producto</p>
                                 <p>{{ $item->product_title }}</p>
@@ -72,7 +71,7 @@
                                 <tr class="border-b border-gray">
                                     <td class="p-4 ">
 
-                                        <img src="{{ asset('img/products/' . $item->img) }}" alt="{{ $item->img }}"
+                                        <img src="{{ $item->img }}" alt="{{ $item->product_title }}"
                                             class=" w-20 rounded-sm my-2">
                                         <p>{{ $item->product_title }}</p>
                                     </td>

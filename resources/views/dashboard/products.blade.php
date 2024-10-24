@@ -26,9 +26,7 @@
             @foreach ($products as $item)
                 <section class=" md:hidden p-2 my-5 ">
                     <div class=" border border-gray rounded-sm flex flex-col items-center justify-center">
-
-                        <img src="{{ asset('img/products/' . $item->img) }}" alt="{{ $item->img }}"
-                            class=" w-20 rounded-sm my-2">
+                        <img src="{{ $item->imgUrl() }}" alt="{{ $item->title }}" class=" w-20 rounded-sm my-2">
                         <div class=" w-full pl-3 border-t border-t-gray">
                             <p class=" font-bold">Producto</p>
                             <p>{{ $item->title }}</p>
@@ -103,7 +101,7 @@
                                     {{ $product->price }}
                                 </td>
                                 <td class="px-6 py-4 hidden md:table-cell">
-                                    <img src="{{ asset('img/products/' . $product->img) }}" alt="{{ $product->tite }}"
+                                    <img src="{{ $product->imgUrl() }}" alt="{{ $product->tite }}"
                                         class=" w-32 rounded-md">
                                 </td>
                                 <td class="px-6 py-4">
