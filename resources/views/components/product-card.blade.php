@@ -1,6 +1,6 @@
 @props(['product'])
 
-<a href="{{ route('producto', $product->id) }}">
+<a href="{{ route('producto', $product->slug) }}">
     <div class=" md:col-span-1 md:max-w-72 m-2 hover:shadow-md hover:shadow-gray  overflow-hidden">
         <img class=" mx-auto" src="{{ $product->imgUrl() }}" alt="{{ $product->title }}">
         <div class=" bg-corduraLightGreen">

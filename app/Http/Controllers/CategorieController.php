@@ -23,6 +23,7 @@ class CategorieController extends Controller
     {
         $request->validate([
             'categorie' => 'required|unique:categories,categorie|max:255',
+            'slug' => 'required|unique:categories,slug',
             'img' => 'required|file|image'
         ]);
 
@@ -33,6 +34,7 @@ class CategorieController extends Controller
         }
         $categorie = new Categorie();
         $categorie->categorie = $request->categorie;
+        $categorie->slug = $request->slug;
         $categorie->img = $request->hasFile('img') ? $publicId : null;
         $categorie->save();
 
@@ -57,9 +59,11 @@ class CategorieController extends Controller
     {
         $request->validate([
             'categorie' => 'required|unique:categories,categorie|max:255',
+            'slug' => 'required|unique:categories,slug',
             'img' => 'file|image|nullable'
         ]);
 
+        $categorie = Categorie::findOrFail($id);
 
         if ($request->hasFile('img')) {
             $file = $request->file('img');
@@ -67,7 +71,6 @@ class CategorieController extends Controller
             $publicId = $cloudinaryImg->getPublicId();
         }
 
-        $categorie = Categorie::findOrFail($id);
         $categorie->categorie = $request->categorie;
         $categorie->img = $request->hasFile('img') ? $publicId : null;
         $categorie->save();

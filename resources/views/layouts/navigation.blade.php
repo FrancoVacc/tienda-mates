@@ -33,30 +33,6 @@
                                 {{ __('Dashboard') }}
                             </x-nav-link>
                         </li>
-                        <li class="mx-3">
-                            <x-nav-link :href="route('products.index')"
-                                class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                {{ __('Productos') }}
-                            </x-nav-link>
-                        </li>
-                        <li class="mx-3">
-                            <x-nav-link :href="route('categories.index')"
-                                class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                {{ __('Categorías') }}
-                            </x-nav-link>
-                        </li>
-                        <li class="mx-3">
-                            <x-nav-link :href="route('ordersshow')"
-                                class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                {{ __('Ordenes de Compra') }}
-                            </x-nav-link>
-                        </li>
-                        <li class="mx-3">
-                            <x-nav-link :href="route('customers')"
-                                class="text-corduraLightGreen hover:text-corduraGreen hover:border-b-2 hover:border-corduraGreen">
-                                {{ __('Clientes') }}
-                            </x-nav-link>
-                        </li>
                     @endrole
                 </ul>
             </nav>
@@ -131,22 +107,6 @@
                     <x-nav-link :href="route('dashboard')"
                         class="text-corduraLightGreen block py-2 px-5 border-l border-corduraLightGreen hover:text-corduraGreen ">
                         {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('products.index')"
-                        class="text-corduraLightGreen block py-2 px-5 border-l border-corduraLightGreen hover:text-corduraGreen  ">
-                        {{ __('Productos') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('categories.index')"
-                        class="text-corduraLightGreen block py-2 px-5 border-l border-corduraLightGreen hover:text-corduraGreen  ">
-                        {{ __('Categorías') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('ordersshow')"
-                        class="text-corduraLightGreen block py-2 px-5 border-l border-corduraLightGreen hover:text-corduraGreen ">
-                        {{ __('Ordenes de Compra') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('customers')"
-                        class="text-corduraLightGreen block py-2 px-5 border-l border-corduraLightGreen hover:text-corduraGreen  ">
-                        {{ __('Clientes') }}
                     </x-nav-link>
                 @endrole
             </div>

@@ -144,3 +144,13 @@
 ## Día 21
 
 -   Añadir Cloudinary para gestionar las imágenes (listo)
+
+## Día 23
+
+-   Implementación de Slugs en las rutas (listo)
+-   Implementación del paquete Laravel-Lang para traducir a Español(listo)
+-   Estilización del Dashboard
+    -   Planteo del menú de Dashboard (listo)
+    -   Ensamble de Componentes (listo)
+    -   Agregar componentes de mensajes nuevos y de visualización de ventas
+    -   Arreglar las vistas de productos, categorías, clientes, etc.

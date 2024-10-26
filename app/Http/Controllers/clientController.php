@@ -71,6 +71,7 @@ class clientController extends Controller
     {
         $new_messages = Message::all()->where('readed', '=', false);
         $old_messages = Message::all()->where('readed', '=', true);
+
         return view('dashboard.messages', compact('new_messages', 'old_messages'));
     }
 
@@ -97,15 +98,17 @@ class clientController extends Controller
         $productos = Product::all();
         return view('web.shop', compact('productos', 'categories'));
     }
-    public function category(string $id)
+    public function category(string $slug)
     {
+        $idCategory = Categorie::where('slug', '=', $slug)->first();
+        $id = $idCategory->id;
         $categories = Categorie::all();
         $productos = Product::where('id_categorie', '=', $id)->get();
         return view('web.shop_category', compact('productos', 'categories'));
     }
-    public function product(string $id)
+    public function product(string $slug)
     {
-        $product = Product::FindOrFail($id);
+        $product = Product::where('slug', '=', $slug)->first();
         return view('web.product', compact('product'));
     }
 }

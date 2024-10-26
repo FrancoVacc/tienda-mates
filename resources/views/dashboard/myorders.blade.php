@@ -1,9 +1,8 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Mis Ordenes') }}
-        </h2>
-    </x-slot>
+
+    <div class="flex justify-around mb-2 border-b-2 border-b-corduraGreen text-corduraLightGreen bg-black ">
+        <x-dashboard-header>{{ __('Mis Compras') }}</x-dashboard-header>
+    </div>
     @if (count($orders))
         <section>
             <table class="w-full text-sm text-left rtl:text-right">

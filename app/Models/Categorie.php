@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     use HasFactory;
-    protected $filables = ['categorie', 'img'];
+    protected $filables = ['categorie', 'img', 'slug'];
 
     public function product()
     {
