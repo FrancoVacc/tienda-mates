@@ -88,6 +88,7 @@ class OrderController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $newOrders = session('newOrders');
         $order = Order::findOrFail($id);
         $order->update([
             'id_status' => $request->status,
@@ -95,6 +96,7 @@ class OrderController extends Controller
             'track_link' => $request->track_link
         ]);
 
+        session(['newOrders' => $newOrders - 1]);
         $user = User::findOrFail($order->id_user);
 
         Mail::to($user->email, $user->name)->send(new OrderStatusMailable($order));

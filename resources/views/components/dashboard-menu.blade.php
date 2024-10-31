@@ -12,11 +12,17 @@
         </div>
         <nav class="w-[80%] ml-4 hidden md:block md:h-screen" id="menu-nav">
             <ul>
-                <li>
+                <li class="flex items-center">
                     <x-dashboard-aside-menu :href="route('messages_show')" name="Mensajes" icon="fa-regular fa-envelope" />
+                    @if (session('newMessages') != 0)
+                        <x-quantity-counter>{{ session('newMessages') }}</x-quantity-counter>
+                    @endif
                 </li>
-                <li>
+                <li class="flex items-center">
                     <x-dashboard-aside-menu :href="route('ordersshow')" name="Ordenes" icon="fa-solid fa-cart-shopping" />
+                    @if (session('newOrders') != 0)
+                        <x-quantity-counter>{{ session('newOrders') }}</x-quantity-counter>
+                    @endif
                 </li>
                 <li>
                     <x-dashboard-aside-menu :href="route('customers')" name="Clientes" icon="fa-solid fa-users" />

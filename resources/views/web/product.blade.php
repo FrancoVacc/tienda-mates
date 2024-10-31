@@ -17,7 +17,8 @@
                     <input type="hidden" name="id" value="{{ $product->id }}">
                     <input type="hidden" name="title" value="{{ $product->title }}">
                     <input type="hidden" name="price" value="{{ $product->price }}">
-                    <input type="hidden" name="img" value="{{ $product->img }}">
+                    <input type="hidden" name="slug" value="{{ $product->slug }}">
+                    <input type="hidden" name="img" value="{{ $product->imgUrl() }}">
                     <div class="flex flex-col md:mr-2 my-2 ">
                         <label for="cantidad">Cantidad</label>
                         <input type="number" id="cuantity" min="1" placeholder="Ej: 1" name="cuantity"

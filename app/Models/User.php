@@ -35,6 +35,7 @@ class User extends Authenticatable
         return $this->hasOne(Address::class, 'id_user', 'id');
     }
 
+
     /**
      * The attributes that should be hidden for serialization.
      *

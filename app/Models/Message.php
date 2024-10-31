@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $filables = ['name', 'lastname', 'email', 'phone', 'message'];
+    protected $filables = ['name', 'lastname', 'email', 'phone', 'message', 'readed'];
 }

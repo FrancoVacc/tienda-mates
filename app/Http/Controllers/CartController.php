@@ -17,6 +17,7 @@ class CartController extends Controller
         $request->validate([
             'id' => 'required',
             'title' => 'required',
+            'slug' => 'required',
             'price' => 'required',
             'cuantity' => 'required',
         ]);
@@ -37,7 +38,7 @@ class CartController extends Controller
         $items = Cart::where('id_user', $userId)->with('items')->first();
         session(['items' => count($items->items)]);
 
-        return redirect('producto/' . $request->id)->with(['message' => 'El producto fue añadido a tu carrito correctamente', 'type' => 'success']);
+        return redirect('producto/' . $request->slug)->with(['message' => 'El producto fue añadido a tu carrito correctamente', 'type' => 'success']);
     }
 
     public function cartShow()

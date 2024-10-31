@@ -152,5 +152,5 @@
 -   Estilización del Dashboard
     -   Planteo del menú de Dashboard (listo)
     -   Ensamble de Componentes (listo)
-    -   Agregar componentes de mensajes nuevos y de visualización de ventas
+    -   Agregar componentes de mensajes nuevos y de visualización de ventas (listo)
     -   Arreglar las vistas de productos, categorías, clientes, etc.

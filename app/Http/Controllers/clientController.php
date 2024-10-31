@@ -78,10 +78,11 @@ class clientController extends Controller
     public function read_message(string $id)
     {
         $message = Message::findOrFail($id);
-
+        $newMessages = session('newMessages');
         if ($message->readed == false) {
             $message->readed = true;
             $message->save();
+            session(['newMessages' => ($newMessages - 1)]);
         }
 
         return view('dashboard.message', compact('message'));

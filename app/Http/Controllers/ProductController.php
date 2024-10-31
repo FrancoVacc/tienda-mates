@@ -132,14 +132,6 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        // $filePath = 'img/products';
-        // $product = Product::find($id);
-        // $img = $product->slug;
-        // $fileName = $filePath . '/' . $img;
-
-        // if (file_exists($fileName)) {
-        //     unlink($fileName);
-        // }
 
         Product::destroy($id);
         return redirect('products');
