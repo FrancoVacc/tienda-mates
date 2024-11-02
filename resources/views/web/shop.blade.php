@@ -8,8 +8,9 @@
                     <div class="p-4 border-y border-gray ml-4">
 
                         @foreach ($categories as $category)
-                            <a class="hover:text-corduraGreen text-center block"
-                                href="{{ route('category', $category->id) }}">{{ $category->categorie }}</a>
+                            <x-category-list :category="$category" />
+                            {{-- <a class="hover:text-corduraGreen text-center block"
+                                href="{{ route('category', $category->id) }}">{{ $category->categorie }}</a> --}}
                         @endforeach
                     </div>
 

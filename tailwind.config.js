@@ -21,6 +21,7 @@ export default {
             'white': '#ffffff',
             'black': '#1F1F1F',
             'zinc': '#d4d4d8',
+            'lightZinc': '#f4f4f5',
             'green': '#22c55e',
             'lightGreen': '#86efac',
             'blue': '#1A56DB',

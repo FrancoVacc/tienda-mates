@@ -16,13 +16,14 @@
                     </thead>
                     <tbody>
                         @foreach ($orders as $order)
-                            <tr class="border-y border-gray">
+                            <tr class="border-y border-zinc">
                                 <td class="py-2 text-center">{{ $order->order_number }}</td>
                                 <td class="py-2 text-center hidden md:table-cell">{{ $order->statusInfo->name }}</td>
                                 <td class="py-2 text-center">{{ $order->user->name }}</td>
                                 <td class="py-2 text-center">${{ number_format($order->price, 2, ',', '.') }}</td>
                                 <td class="py-2 flex justify-center"><a href="{{ route('ordershow', $order->id) }}"
-                                        class="bg-purple px-2 py-1 text-xs text-white rounded-sm">Ver</a>
+                                        class="bg-purple px-2 py-1 text-xs text-white rounded-sm"><i
+                                            class="fa-solid fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

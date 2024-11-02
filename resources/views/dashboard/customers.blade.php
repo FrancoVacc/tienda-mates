@@ -5,7 +5,7 @@
             {{-- mobile version --}}
             <section class="p-2 md:hidden">
                 @foreach ($users as $user)
-                    <div class="p-2 border border-gray">
+                    <div class="p-2 border-y border-zinc">
                         <p class="font-bold">Nombre: <span class="font-normal">{{ $user->name }}</span></p>
                         <p class="font-bold">Apellido: <span
                                 class="font-normal">{{ $user->user_information->lastname }}</span>
@@ -22,25 +22,25 @@
                 @endforeach
             </section>
             {{-- Desktop version --}}
-            <section class="hidden md:block lg:col-span-4 px-2 my-4 ">
-                <table class="w-full text-sm text-left   border border-gray">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <section class="hidden md:block lg:col-span-4">
+                <table class="w-full text-sm text-left">
+                    <thead class="text-xs text-white uppercase bg-gray">
                         <tr>
-                            <th scope="col" class="px-6 py-3">Nombre</th>
-                            <th scope="col" class="px-6 py-3">Apellido</th>
-                            <th scope="col" class="px-6 py-3">Email</th>
-                            <th scope="col" class="px-6 py-3">Teléfono</th>
-                            <th scope="col" class="px-6 py-3">Dirección</th>
+                            <th scope="col" class="md:px-6 text-center px-2 py-3">Nombre</th>
+                            <th scope="col" class="md:px-6 text-center px-2 py-3">Apellido</th>
+                            <th scope="col" class="md:px-6 text-center px-2 py-3">Email</th>
+                            <th scope="col" class="md:px-6 text-center px-2 py-3">Teléfono</th>
+                            <th scope="col" class="md:px-6 text-center px-2 py-3">Dirección</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            <tr class="border-b border-gray">
-                                <td class="px-6 py-4 ">{{ $user->name }}</td>
-                                <td class="px-6 py-4 ">{{ $user->user_information->lastname }}</td>
-                                <td class="px-6 py-4 ">{{ $user->email }}</td>
-                                <td class="px-6 py-4 ">{{ $user->user_information->phone }}</td>
-                                <td class="px-6 py-4 ">
+                            <tr class="border-b border-y-zinc">
+                                <td class="py-2 text-center">{{ $user->name }}</td>
+                                <td class="py-2 text-center">{{ $user->user_information->lastname }}</td>
+                                <td class="py-2 text-center">{{ $user->email }}</td>
+                                <td class="py-2 text-center">{{ $user->user_information->phone }}</td>
+                                <td class="py-2 text-center">
                                     {{ $user->address->street . ' ' . $user->address->number . ' - ' . $user->address->city . ' ' . $user->address->province }}
                                 </td>
                             </tr>

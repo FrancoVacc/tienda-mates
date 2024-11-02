@@ -58,8 +58,8 @@ class CategorieController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'categorie' => 'required|unique:categories,categorie|max:255',
-            'slug' => 'required|unique:categories,slug',
+            'categorie' => 'required|max:255',
+            'slug' => 'required',
             'img' => 'file|image|nullable'
         ]);
 
@@ -72,6 +72,7 @@ class CategorieController extends Controller
         }
 
         $categorie->categorie = $request->categorie;
+        $categorie->slug = $request->slug;
         $categorie->img = $request->hasFile('img') ? $publicId : null;
         $categorie->save();
         return redirect('categories');

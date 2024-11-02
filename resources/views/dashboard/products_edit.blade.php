@@ -8,23 +8,24 @@
                     </div>
                 @endforeach
             @endif
-            <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data"
+                class="bg-lightZinc rounded-sm p-1">
                 @csrf
                 @method('put')
                 <div class="flex flex-col justify-start md:mr-1">
                     <label for="title" class=" font-semibold text-sm text-black py-2">Titulo</label>
                     <input type="text" name="title" value="{{ old('title', $product->title) }}"
-                        class="text-sm h-9  text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
+                        class="text-sm h-9 bg-lightZinc focus:bg-white  text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
                 </div>
                 <div class="flex flex-col justify-start md:mr-1">
                     <label for="slug" class=" font-semibold text-sm text-black py-2">Slug</label>
                     <input type="text" name="slug" value="{{ old('slug', $product->slug) }}"
-                        class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
+                        class="text-sm h-9 bg-lightZinc focus:bg-white text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
                 </div>
                 <div class="flex flex-col justify-start md:mr-1">
                     <label for="price" class=" font-semibold text-sm text-black py-2">Precio</label>
                     <input type="number" name="price" value="{{ old('price', $product->price) }}"
-                        class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
+                        class="text-sm h-9 bg-lightZinc focus:bg-white text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
                 </div>
                 <div class="flex flex-col align-middle md:mr-1">
                     <label for="available" class=" font-semibold text-sm text-black py-2">Disponible</label>
@@ -33,7 +34,7 @@
                 <div class="flex flex-col justify-start md:mr-1">
                     <label for="categorie" class=" font-semibold text-sm text-black py-2">Categoría</label>
                     <select name="categorie" value="{{ old('price') }}"
-                        class="text-sm h-9 text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
+                        class="text-sm h-9 bg-lightZinc focus:bg-white text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">
                         <option>-- Seleccione una opción --</option>
                         @foreach ($category as $item)
                             <option value="{{ $item->id }}">{{ $item->categorie }}</option>
@@ -44,7 +45,7 @@
                     <label for="description" class=" font-semibold text-sm text-black py-2">Descripción del
                         producto</label>
                     <textarea name="description" id="" cols="20" rows="5" style="resize:none"
-                        class="text-sm  text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">{{ old('description', $product->description) }}</textarea>
+                        class="text-sm bg-lightZinc focus:bg-white text-black font-light px-3 py-2 border-0 border-b-2 focus:outline-none focus:border-b-lightBlue focus:ring-0">{{ old('description', $product->description) }}</textarea>
                 </div>
                 <div class="flex flex-col justify-start md:mr-1">
                     <label for="img" class=" font-semibold text-sm text-black py-2">Foto de portada</label>
@@ -58,7 +59,8 @@
 
                 <div class="flex align-middle mt-2">
                     <button type="submit"
-                        class="bg-purple hover:bg-lightPurple px-5 py-2 rounded-md mx-auto text-white">Guardar</button>
+                        class="bg-purple hover:bg-lightPurple px-5 py-2 rounded-md mx-auto text-white"> <i
+                            class="fa-solid fa-floppy-disk"></i></button>
 
                 </div>
             </form>
